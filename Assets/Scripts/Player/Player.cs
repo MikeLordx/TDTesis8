@@ -3,9 +3,29 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    // Singleton instance
+    public static Player Instance { get; private set; }
+
     public int maxHealth = 100;               // Maximum health the player can have
     public int currentHealth;                 // Current health of the player
     public TMP_Text healthText;               // Reference to the TextMeshPro UI component
+
+    private void Awake()
+    {
+        // Ensure that there's only one instance of Player
+        if (Instance == null)
+        {
+            Instance = this;                  // Set the instance to this object
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);              // Destroy duplicate instances
+            return;
+        }
+
+        // Ensure this object persists across scenes if necessary
+        DontDestroyOnLoad(gameObject);         // Optional: if you want the player to persist across scenes
+    }
 
     void Start()
     {
