@@ -11,12 +11,15 @@ public class TowerPlacementSystem : MonoBehaviour
     [SerializeField] private GameObject[] previewPrefabs;
     [SerializeField] private float[] constructionTimes;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask enemyPathLayer; 
     [SerializeField] private KeyCode openMenuKey = KeyCode.X;
     [SerializeField] private float buildRange = 10f;
     [SerializeField] private float minDistanceFromPlayer = 2f;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject towerMenuUI;
     [SerializeField] private Button[] towerButtons;
+    [SerializeField] private float rotationSpeed = 10f;
+    private float currentRotation = 0f;
 
     private GameObject currentPreview;
     private int selectedTowerIndex = -1;
@@ -113,7 +116,7 @@ public class TowerPlacementSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer | enemyPathLayer))
         {
             Vector3 placementPosition = hit.point;
 
@@ -126,14 +129,19 @@ public class TowerPlacementSystem : MonoBehaviour
                     currentPreview.transform.position = placementPosition;
 
                     RaycastHit groundHit;
-                    if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
+                    if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer | enemyPathLayer))
                     {
                         placementPosition.y = groundHit.point.y;
-
                         float previewHeightOffset = 1.0f;
                         placementPosition.y += previewHeightOffset;
-
                         currentPreview.transform.position = placementPosition;
+                    }
+
+                    float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+                    if (scrollInput != 0f)
+                    {
+                        currentRotation += scrollInput * rotationSpeed;
+                        currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
                     }
                 }
             }
@@ -164,7 +172,9 @@ public class TowerPlacementSystem : MonoBehaviour
                 float towerHeightOffset = 1.0f;
                 towerPosition.y += towerHeightOffset;
 
-                StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition));
+                Quaternion towerRotation = currentPreview.transform.rotation;
+
+                StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, towerRotation));
 
                 Destroy(currentPreview);
                 currentPreview = null;
@@ -173,8 +183,7 @@ public class TowerPlacementSystem : MonoBehaviour
             }
         }
     }
-
-    IEnumerator BuildTowerWithDelay(int towerIndex, Vector3 position)
+    IEnumerator BuildTowerWithDelay(int towerIndex, Vector3 position, Quaternion rotation)
     {
         float constructionTime = constructionTimes[towerIndex];
 
@@ -182,8 +191,9 @@ public class TowerPlacementSystem : MonoBehaviour
 
         yield return new WaitForSeconds(constructionTime);
 
-        Instantiate(towerPrefabs[towerIndex], position, Quaternion.identity);
+        Instantiate(towerPrefabs[towerIndex], position, rotation);
     }
+
 
     #endregion
 
