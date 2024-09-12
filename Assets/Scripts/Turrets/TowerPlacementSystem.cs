@@ -183,8 +183,6 @@ public class TowerPlacementSystem : MonoBehaviour
         yield return new WaitForSeconds(constructionTime);
 
         Instantiate(towerPrefabs[towerIndex], position, Quaternion.identity);
-
-        Debug.Log("Torre construida.");
     }
 
     #endregion
