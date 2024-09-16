@@ -7,5 +7,6 @@ public class DoDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         player.TakeDamage(10);
+        Destroy(gameObject);
     }
 }
