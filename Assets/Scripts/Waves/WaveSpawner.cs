@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +6,21 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private Wave currentWave;
 
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private List<SpawnPointWaypoints> spawnPointsWithWaypoints;
 
-    private float timeBetweenSpawns;
+    private float timeBetweenWaves;
     private int i = 0;
 
+    private float timeBetweenSpawns = 1f;
+    private float timeSinceLastSpawn = 0f;
+    private int enemiesSpawned = 0;
+    private bool isSpawningWave = false;
     private bool stopSpawning = false;
 
     private void Awake()
     {
         currentWave = waves[i];
-        timeBetweenSpawns = currentWave.TimeBeforeThisWave;
+        timeBetweenWaves = currentWave.TimeBeforeThisWave;
     }
 
     private void Update()
@@ -27,29 +30,53 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
-        if (Time.time >= timeBetweenSpawns)
+        if (isSpawningWave)
         {
-            SpawnWave();
-            IncWave();
+            if (Time.time >= timeSinceLastSpawn + timeBetweenSpawns && enemiesSpawned < currentWave.NumberToSpawn)
+            {
+                SpawnEnemy();
+                enemiesSpawned++;
+                timeSinceLastSpawn = Time.time;
+            }
 
-            timeBetweenSpawns = Time.time + currentWave.TimeBeforeThisWave;
+            if (enemiesSpawned >= currentWave.NumberToSpawn)
+            {
+                isSpawningWave = false;
+                IncWave();
+                timeBetweenWaves = Time.time + currentWave.TimeBeforeThisWave;
+            }
+        }
+        else if (Time.time >= timeBetweenWaves)
+        {
+            StartWave();
         }
     }
 
-    private void SpawnWave()
+    private void SpawnEnemy()
     {
-        for(int i = 0; i < currentWave.NumberToSpawn; i++)
-        {
-            int num = Random.Range(0, currentWave.EnemiesInWave.Length);
-            int num2 = Random.Range(0, spawnPoints.Length);
+        int enemyIndex = Random.Range(0, currentWave.EnemiesInWave.Length);
+        int spawnPointIndex = Random.Range(0, spawnPointsWithWaypoints.Count);
 
-            Instantiate(currentWave.EnemiesInWave[num], spawnPoints[num2].position, spawnPoints[num2].rotation);
+        GameObject enemy = Instantiate(currentWave.EnemiesInWave[enemyIndex], spawnPointsWithWaypoints[spawnPointIndex].spawnPoint.position, spawnPointsWithWaypoints[spawnPointIndex].spawnPoint.rotation);
+
+        // Asignar la lista de waypoints correspondiente al spawn point
+        EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
+        {
+            enemyMovement.wayPoint = spawnPointsWithWaypoints[spawnPointIndex].waypoints;
         }
+    }
+
+    private void StartWave()
+    {
+        enemiesSpawned = 0;
+        isSpawningWave = true;
+        timeSinceLastSpawn = Time.time;
     }
 
     private void IncWave()
     {
-        if(i + 1 < waves.Length)
+        if (i + 1 < waves.Length)
         {
             i++;
             currentWave = waves[i];

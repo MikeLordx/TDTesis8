@@ -172,11 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee9a0901b0cf01498ae5e0811d0cc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  wayPoint: []
   currentWaypointIndex: 0
 --- !u!114 &3804892235877523680
 MonoBehaviour:
