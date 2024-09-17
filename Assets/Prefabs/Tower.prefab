@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8785281985761102810}
   - component: {fileID: 7019706978994250327}
   - component: {fileID: 810076436148539804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 21108057066609619}
   - component: {fileID: 2453827733943745094}
   - component: {fileID: 7117911685504200063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6103734846190224759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 8850692342591758837}
   - component: {fileID: 4077299068571214459}
   - component: {fileID: 7228073161492148043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 5396973281344102917}
   - component: {fileID: 4480211766114078341}
   - component: {fileID: 844180668550884453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,5 +472,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 3124863515206372292, guid: 937b6db8fadfeb249aaecd08b2423678, type: 3}
   firePoint: {fileID: 6103734846190224759}
-  fireRate: 1.5
+  fireRate: 2
   range: 10

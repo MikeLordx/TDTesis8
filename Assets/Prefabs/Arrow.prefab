@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6794135233543740546}
   - component: {fileID: 5046378855012145390}
   - component: {fileID: 4231339260848597194}
+  - component: {fileID: 8708574877412024162}
   m_Layer: 0
-  m_Name: Piscina
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8708574877412024162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917786396910067296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c309fa0d9f2aeb498bbea6589579fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
