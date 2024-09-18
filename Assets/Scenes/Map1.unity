@@ -741,7 +741,6 @@ MonoBehaviour:
   - {fileID: 1564339217}
   - {fileID: 319462796}
   - {fileID: 1681943040}
-  delayBetweenEnemies: 1
 --- !u!4 &398799015
 Transform:
   m_ObjectHideFlags: 0

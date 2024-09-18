@@ -8,7 +8,6 @@ public class WaveSpawner : MonoBehaviour
     private Wave currentWave;
 
     [SerializeField] private List<SpawnPointWaypoints> spawnPointWaypoints; // Lista que asocia puntos de spawn con waypoints
-    [SerializeField] private float delayBetweenEnemies = 1f; // Tiempo de espera entre cada spawn
 
     private int waveIndex = 0;
     private bool stopSpawning = false;
@@ -34,73 +33,68 @@ public class WaveSpawner : MonoBehaviour
         // Verificar si es el momento de iniciar la nueva oleada
         if (Time.time >= nextWaveTime)
         {
-            // Control del tiempo antes de la siguiente oleada
-            if (enemiesSpawnedInCurrentWave < currentWave.EnemiesToSpawn[currentEnemyIndex].quantity)
+            // Si aún quedan enemigos por spawnear en la oleada actual
+            if (enemiesSpawnedInCurrentWave < TotalEnemiesInWave())
             {
                 if (Time.time >= nextSpawnTime)
                 {
-                    SpawnEnemy();
-                    nextSpawnTime = Time.time + delayBetweenEnemies; // Establece el próximo tiempo de spawn
+                    SpawnEnemiesSimultaneously(); // Spawnear todos los enemigos de la oleada
+
                 }
             }
             else
             {
-                // Si ya se han spawneado todos los enemigos de este tipo, avanza al siguiente tipo de enemigo
-                currentEnemyIndex++;
-
-                if (currentEnemyIndex >= currentWave.EnemiesToSpawn.Count)
-                {
-                    // Si ya se spawnearon todos los enemigos de la oleada, pasa a la siguiente oleada
-                    IncWave();
-                }
-                else
-                {
-                    // Reinicia el contador de enemigos para el siguiente tipo de enemigo
-                    enemiesSpawnedInCurrentWave = 0;
-                }
+                IncWave(); // Avanza a la siguiente oleada
             }
         }
     }
 
-    private void SpawnEnemy()
+    // Devuelve el número total de enemigos a spawnear en la oleada
+    private int TotalEnemiesInWave()
     {
-        // Verificar si la lista de puntos de spawn tiene elementos
-        if (spawnPointWaypoints.Count == 0)
+        int totalEnemies = 0;
+        foreach (var enemyData in currentWave.EnemiesToSpawn)
         {
-            Debug.LogError("La lista de puntos de spawn está vacía.");
-            return;
+            totalEnemies += enemyData.quantity; // Sumar la cantidad de cada tipo de enemigo
         }
+        return totalEnemies;
+    }
 
-        // Obtén el índice del punto de spawn para el enemigo actual
-        var enemyData = currentWave.EnemiesToSpawn[currentEnemyIndex];
-        int spawnPointIndex = enemyData.spawnPointIndex;
-
-        // Verificar si el índice del punto de spawn es válido
-        if (spawnPointIndex < 0 || spawnPointIndex >= spawnPointWaypoints.Count)
+    private void SpawnEnemiesSimultaneously()
+    {
+        // Iterar sobre todos los tipos de enemigos a spawnear en la oleada actual
+        foreach (var enemyData in currentWave.EnemiesToSpawn)
         {
-            Debug.LogError("Índice de punto de spawn fuera de rango.");
-            return;
-        }
-
-        // Verifica que no sea null el prefab y el punto de spawn
-        if (enemyData.enemyPrefab != null && spawnPointWaypoints[spawnPointIndex] != null)
-        {
-            // Instancia el enemigo en la posición y rotación del spawn point correspondiente
-            GameObject enemyInstance = Instantiate(enemyData.enemyPrefab, spawnPointWaypoints[spawnPointIndex].spawnPoint.position, spawnPointWaypoints[spawnPointIndex].spawnPoint.rotation);
-
-            // Asignar waypoints o rutas al enemigo instanciado
-            EnemyMovement enemyMovement = enemyInstance.GetComponent<EnemyMovement>();
-            if (enemyMovement != null)
+            // Verificar que el índice del punto de spawn sea válido
+            if (enemyData.spawnPointIndex < 0 || enemyData.spawnPointIndex >= spawnPointWaypoints.Count)
             {
-                // Asignar los waypoints correspondientes al punto de spawn
-                enemyMovement.wayPoint = spawnPointWaypoints[spawnPointIndex].waypoints;
+                Debug.LogError("Índice de punto de spawn fuera de rango.");
+                continue;
             }
 
-            enemiesSpawnedInCurrentWave++; // Incrementa el contador de enemigos spawneados
-        }
-        else
-        {
-            Debug.LogError("Prefab del enemigo o punto de spawn es nulo.");
+            // Verificar que el prefab del enemigo y el punto de spawn no sean nulos
+            if (enemyData.enemyPrefab != null && spawnPointWaypoints[enemyData.spawnPointIndex] != null)
+            {
+                // Spawnear la cantidad de enemigos especificada en enemyData.quantity
+                for (int i = 0; i < enemyData.quantity; i++)
+                {
+                    // Instanciar cada enemigo en el punto de spawn correcto
+                    GameObject enemyInstance = Instantiate(enemyData.enemyPrefab, spawnPointWaypoints[enemyData.spawnPointIndex].spawnPoint.position, spawnPointWaypoints[enemyData.spawnPointIndex].spawnPoint.rotation);
+
+                    // Asignar waypoints o rutas al enemigo instanciado
+                    EnemyMovement enemyMovement = enemyInstance.GetComponent<EnemyMovement>();
+                    if (enemyMovement != null)
+                    {
+                        enemyMovement.wayPoint = spawnPointWaypoints[enemyData.spawnPointIndex].waypoints;
+                    }
+
+                    enemiesSpawnedInCurrentWave++; // Incrementa el contador de enemigos spawneados
+                }
+            }
+            else
+            {
+                Debug.LogError("Prefab del enemigo o punto de spawn es nulo.");
+            }
         }
     }
 

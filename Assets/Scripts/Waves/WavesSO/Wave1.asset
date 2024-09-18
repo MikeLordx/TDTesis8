@@ -15,6 +15,8 @@ MonoBehaviour:
   <EnemiesToSpawn>k__BackingField:
   - enemyPrefab: {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     quantity: 2
+    spawnPointIndex: 1
   - enemyPrefab: {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    quantity: 1
+    quantity: 2
+    spawnPointIndex: 0
   <TimeBeforeThisWave>k__BackingField: 2
