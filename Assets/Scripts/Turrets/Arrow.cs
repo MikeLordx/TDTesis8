@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float damage = 30f;
-    private BulletPooler bulletPooler;
+    [SerializeField] public float damage = 30f;
+    [SerializeField] private BulletPooler bulletPooler;
 
     public void SetBulletPooler(BulletPooler pooler)
     {

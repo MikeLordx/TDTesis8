@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ArcherTower : MonoBehaviour
 {
-    public BulletPooler bulletPool;
-    public Transform firePoint;
-    public float fireRate = 1.5f;
-    public float range = 10f;
-    private float nextFireTime = 0f;
-    private Transform target;
+    [SerializeField] public BulletPooler bulletPool;
+    [SerializeField] public Transform firePoint;
+    [SerializeField] public float fireRate = 1.5f;
+    [SerializeField] public float range = 10f;
+    [SerializeField] private float nextFireTime = 0f;
+    [SerializeField] private Transform target;
 
     void Update()
     {

@@ -24,9 +24,7 @@ public class PlayerJump : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
         velocity.y += gravity * Time.deltaTime;
-
         Vector3 move = new Vector3(0, velocity.y, 0);
         controller.Move(move * Time.deltaTime);
     }
