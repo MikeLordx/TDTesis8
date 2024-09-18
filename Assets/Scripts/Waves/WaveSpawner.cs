@@ -38,7 +38,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 if (Time.time >= nextSpawnTime)
                 {
-                    SpawnEnemiesSimultaneously(); // Spawnear todos los enemigos de la oleada
+                    SpawnEnemies(); // Spawnear todos los enemigos de la oleada
 
                 }
             }
@@ -60,7 +60,7 @@ public class WaveSpawner : MonoBehaviour
         return totalEnemies;
     }
 
-    private void SpawnEnemiesSimultaneously()
+    private void SpawnEnemies()
     {
         // Iterar sobre todos los tipos de enemigos a spawnear en la oleada actual
         foreach (var enemyData in currentWave.EnemiesToSpawn)
