@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20510a180b6d1f54baa81e3429b59896, type: 3}
   m_Name: Wave2
   m_EditorClassIdentifier: 
-  <EnemiesInWave>k__BackingField:
-  - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+  <EnemiesToSpawn>k__BackingField:
+  - enemyPrefab: {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    quantity: 5
+  - enemyPrefab: {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
+    quantity: 2
   <TimeBeforeThisWave>k__BackingField: 10
-  <NumberToSpawn>k__BackingField: 2

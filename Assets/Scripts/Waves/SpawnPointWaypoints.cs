@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnPointWaypoints : MonoBehaviour
 {
-        public Transform spawnPoint;
-        public List<Transform> waypoints;
+    public Transform spawnPoint;
+    public List<Transform> waypoints;
 }

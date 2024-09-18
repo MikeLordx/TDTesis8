@@ -737,10 +737,11 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 3f80e41623a02414fb1b9f9f6f29dd8b, type: 2}
   - {fileID: 11400000, guid: 3ea73a6643e1a384cbff5c083f8c248c, type: 2}
-  spawnPointsWithWaypoints:
+  spawnPointWaypoints:
   - {fileID: 1564339217}
   - {fileID: 319462796}
   - {fileID: 1681943040}
+  delayBetweenEnemies: 1
 --- !u!4 &398799015
 Transform:
   m_ObjectHideFlags: 0
