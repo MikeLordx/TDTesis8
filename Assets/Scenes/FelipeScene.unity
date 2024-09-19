@@ -495,7 +495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fc988b712ff50324daaf049e5a6972d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -712,6 +712,18 @@ PrefabInstance:
       propertyPath: towerMenuUI
       value: 
       objectReference: {fileID: 568846761}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: previewRenderer
+      value: 
+      objectReference: {fileID: 5396973281344102917, guid: 8e6eed4e925d9b443922a6e57bad3134, type: 3}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: validPlacementMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: fc988b712ff50324daaf049e5a6972d6, type: 2}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: invalidPlacementMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ed6fa293d25324e4392dfce1fcaa2341, type: 2}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: towerButtons.Array.data[0]
       value: 

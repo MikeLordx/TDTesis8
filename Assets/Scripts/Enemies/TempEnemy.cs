@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TempEnemy : MonoBehaviour
 {
-    public float health = 100f;
+    [SerializeField] public float health = 100f;
 
     public void TakeDamage(float amount)
     {
