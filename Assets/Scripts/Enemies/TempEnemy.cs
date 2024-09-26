@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempEnemy : MonoBehaviour
 {
     [SerializeField] public float health = 100f;
+    [SerializeField] public int pointsDropped = 10;
     WaveSpawner waveSpawner;
 
     public void TakeDamage(float amount)
@@ -18,6 +19,7 @@ public class TempEnemy : MonoBehaviour
 
     void Die()
     {
+        GameManager.instance.AddPoints(pointsDropped);
         waveSpawner.EnemyKilled();
         Destroy(gameObject);
     }

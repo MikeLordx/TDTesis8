@@ -21,9 +21,6 @@ public class TowerPlacementSystem : MonoBehaviour
     [SerializeField] private Button[] towerButtons;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float minDistanceBetweenTowers = 3f;
-    [SerializeField] private Material validPlacementMaterial;
-    [SerializeField] private Material invalidPlacementMaterial;
-    [SerializeField] private Renderer previewRenderer;
     private float currentRotation = 0f;
 
     private GameObject currentPreview;
@@ -118,6 +115,7 @@ public class TowerPlacementSystem : MonoBehaviour
 
     void PreviewTowerPlacement()
     {
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -128,16 +126,21 @@ public class TowerPlacementSystem : MonoBehaviour
             float distanceFromPlayer = Vector3.Distance(player.position, placementPosition);
             if (distanceFromPlayer <= buildRange && distanceFromPlayer >= minDistanceFromPlayer)
             {
-                bool isNearOtherTower = IsThereATowerNearby(placementPosition, minDistanceBetweenTowers);
-                bool isOnEnemyPath = Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, Mathf.Infinity, enemyPathLayer);
-
-                if (!isNearOtherTower && !isOnEnemyPath)
+                if (!IsThereATowerNearby(placementPosition, minDistanceBetweenTowers))
                 {
                     if (currentPreview != null)
                     {
                         currentPreview.SetActive(true);
-                        previewRenderer.material = validPlacementMaterial;
                         currentPreview.transform.position = placementPosition;
+
+                        RaycastHit groundHit;
+                        if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer | enemyPathLayer))
+                        {
+                            placementPosition.y = groundHit.point.y;
+                            float previewHeightOffset = 1.0f;
+                            placementPosition.y += previewHeightOffset;
+                            currentPreview.transform.position = placementPosition;
+                        }
 
                         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
                         if (scrollInput != 0f)
@@ -150,27 +153,19 @@ public class TowerPlacementSystem : MonoBehaviour
                 else
                 {
                     if (currentPreview != null)
-                    {
-                        currentPreview.SetActive(true);
-                        previewRenderer.material = invalidPlacementMaterial;
-                    }
+                        currentPreview.SetActive(false);
                 }
             }
             else
             {
                 if (currentPreview != null)
-                {
-                    currentPreview.SetActive(true);
-                    previewRenderer.material = invalidPlacementMaterial;
-                }
+                    currentPreview.SetActive(false);
             }
         }
         else
         {
             if (currentPreview != null)
-            {
                 currentPreview.SetActive(false);
-            }
         }
     }
 
