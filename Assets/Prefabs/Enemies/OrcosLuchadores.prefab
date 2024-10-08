@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3804892235877523680}
   - component: {fileID: 5387027266614508352}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: OrcosLuchadores
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7954078855402617965}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8733187650641261916
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 7.8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -173,10 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee9a0901b0cf01498ae5e0811d0cc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  wayPoint: []
   currentWaypointIndex: 0
 --- !u!114 &3804892235877523680
 MonoBehaviour:
@@ -202,4 +199,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2681a3cfe34184548b8da01fdc4c5796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
+  pointsDropped: 10
