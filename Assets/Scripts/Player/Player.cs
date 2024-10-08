@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
         currentHealth -= damage;              // Reduce the player's current health
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Ensure health doesn't drop below 0 or exceed maxHealth
         UpdateHealthText();                   // Update the health display
+        if (currentHealth <= 0) 
+        {
+            GameManager.instance.ChangeState(GameState.GameOver);
+        }
     }
 
     // Function to update the displayed health value

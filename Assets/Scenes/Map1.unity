@@ -122,6 +122,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3902196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3902198}
+  - component: {fileID: 3902197}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &3902197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc85f2724c7d732429bac3b1712461c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  playerPoints: 0
+--- !u!4 &3902198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.017616, y: -26.475258, z: -0.14588928}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &144067918
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,12 +784,22 @@ MonoBehaviour:
   waves:
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    enemiesCount: 0a000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    enemiesCount: 0a0000000a000000
-    spawnRate: 2
+    enemiesCount: 0f00000002000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
+    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
+    enemiesCount: 0a0000000400000001000000
+    spawnRate: 1
   spawnPointsWithWaypoints:
   - {fileID: 1564339217}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 20
   countdownText: {fileID: 1937704346}
 --- !u!4 &398799015
 Transform:
@@ -1237,12 +1293,22 @@ MonoBehaviour:
   waves:
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    enemiesCount: 0a000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    enemiesCount: 0a0000000a000000
-    spawnRate: 2
+    enemiesCount: 0f00000002000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
+    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
+    enemiesCount: 0a0000000400000001000000
+    spawnRate: 1
   spawnPointsWithWaypoints:
   - {fileID: 319462796}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 20
   countdownText: {fileID: 1937704346}
 --- !u!4 &835464653
 Transform:
@@ -2254,12 +2320,22 @@ MonoBehaviour:
   waves:
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    enemiesCount: 0a000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    enemiesCount: 0a0000000a000000
-    spawnRate: 2
+    enemiesCount: 0f00000002000000
+    spawnRate: 1
+  - enemies:
+    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
+    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
+    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
+    enemiesCount: 0a0000000400000001000000
+    spawnRate: 1
   spawnPointsWithWaypoints:
   - {fileID: 1681943040}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 20
   countdownText: {fileID: 1937704346}
 --- !u!4 &1925880578
 Transform:
@@ -2599,3 +2675,4 @@ SceneRoots:
   - {fileID: 398799015}
   - {fileID: 835464653}
   - {fileID: 1925880578}
+  - {fileID: 3902198}
