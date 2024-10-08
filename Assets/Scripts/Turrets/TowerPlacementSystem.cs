@@ -115,38 +115,45 @@ public class TowerPlacementSystem : MonoBehaviour
 
     void PreviewTowerPlacement()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer | enemyPathLayer))
         {
             Vector3 placementPosition = hit.point;
-
             float distanceFromPlayer = Vector3.Distance(player.position, placementPosition);
             if (distanceFromPlayer <= buildRange && distanceFromPlayer >= minDistanceFromPlayer)
             {
                 if (!IsThereATowerNearby(placementPosition, minDistanceBetweenTowers))
                 {
-                    if (currentPreview != null)
+                    if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, enemyPathLayer))
                     {
-                        currentPreview.SetActive(true);
-                        currentPreview.transform.position = placementPosition;
-
-                        RaycastHit groundHit;
-                        if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer | enemyPathLayer))
+                        if (currentPreview != null)
                         {
-                            placementPosition.y = groundHit.point.y;
-                            float previewHeightOffset = 1.0f;
-                            placementPosition.y += previewHeightOffset;
-                            currentPreview.transform.position = placementPosition;
+                            currentPreview.SetActive(true);
+                            SetPreviewColor(Color.red);
                         }
-
-                        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-                        if (scrollInput != 0f)
+                    }
+                    else
+                    {
+                        if (currentPreview != null)
                         {
-                            currentRotation += scrollInput * rotationSpeed;
-                            currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
+                            currentPreview.SetActive(true);
+                            currentPreview.transform.position = placementPosition;
+                            SetPreviewColor(Color.green);
+                            RaycastHit groundHit;
+                            if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
+                            {
+                                placementPosition.y = groundHit.point.y;
+                                float previewHeightOffset = 1.0f;
+                                placementPosition.y += previewHeightOffset;
+                                currentPreview.transform.position = placementPosition;
+                            }
+                            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+                            if (scrollInput != 0f)
+                            {
+                                currentRotation += scrollInput * rotationSpeed;
+                                currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
+                            }
                         }
                     }
                 }
@@ -166,6 +173,16 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             if (currentPreview != null)
                 currentPreview.SetActive(false);
+        }
+    }
+
+    void SetPreviewColor(Color color)
+    {
+        Renderer[] renderers = currentPreview.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.color = color;
         }
     }
 
