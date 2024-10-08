@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public int playerCoins = 100;
+    public TextMeshProUGUI coinText;
     public GameState currentState;
-    public int playerPoints = 0;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.MainMenu);
+        UpdateCoinUI();
     }
 
     private void Update()
@@ -26,15 +29,26 @@ public class GameManager : MonoBehaviour
         Debug.Log(currentState.ToString());
     }
 
-    public void AddPoints(int points)
+    public void AddCoins(int amount)
     {
-        playerPoints += points;
-        UpdateUI();
+        playerCoins += amount;
+        UpdateCoinUI();
     }
 
-    private void UpdateUI()
+    private void UpdateCoinUI()
     {
-        // Para puntos o que? Dea
+        coinText.text = playerCoins.ToString();
+    }
+
+    public bool HasEnoughCoins(int towerCost)
+    {
+        return playerCoins >= towerCost;
+    }
+
+    public void SpendCoins(int amount)
+    {
+        playerCoins -= amount;
+        UpdateCoinUI();
     }
 
     public void ChangeState(GameState newState)

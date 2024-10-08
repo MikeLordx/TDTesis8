@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class TowerPlacementSystem : MonoBehaviour
     private GameObject currentPreview;
     private int selectedTowerIndex = -1;
     private bool isPlacingTower = false;
+    [SerializeField] private int[] towerCosts;
 
     #endregion
 
@@ -53,6 +55,9 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             int index = i;
             towerButtons[i].onClick.AddListener(() => SelectTower(index));
+
+            TextMeshProUGUI buttonText = towerButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "Torre " + (i + 1) + " - " + towerCosts[i] + " monedas";
         }
     }
 
@@ -74,17 +79,26 @@ public class TowerPlacementSystem : MonoBehaviour
 
     void SelectTower(int index)
     {
-        selectedTowerIndex = index;
-        isPlacingTower = true;
-
-        towerMenuUI.SetActive(false);
-
-        if (currentPreview != null)
+        if (GameManager.instance.HasEnoughCoins(towerCosts[index])) // Verifica si hay suficientes monedas
         {
-            Destroy(currentPreview);
+            selectedTowerIndex = index;
+            isPlacingTower = true;
+            towerMenuUI.SetActive(false);
+
+            if (currentPreview != null)
+            {
+                Destroy(currentPreview);
+            }
+
+            currentPreview = Instantiate(previewPrefabs[selectedTowerIndex]);
         }
-        currentPreview = Instantiate(previewPrefabs[selectedTowerIndex]);
+        else
+        {
+            Debug.Log("No tienes suficientes monedas para esta torre.");
+        }
     }
+
+
 
     #endregion
 
@@ -202,13 +216,14 @@ public class TowerPlacementSystem : MonoBehaviour
             if (Physics.Raycast(towerPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
             {
                 towerPosition.y = hit.point.y;
-
                 float towerHeightOffset = 1.0f;
                 towerPosition.y += towerHeightOffset;
 
                 Quaternion towerRotation = currentPreview.transform.rotation;
 
                 StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, towerRotation));
+
+                GameManager.instance.SpendCoins(towerCosts[selectedTowerIndex]);
 
                 Destroy(currentPreview);
                 currentPreview = null;
