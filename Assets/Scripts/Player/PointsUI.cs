@@ -7,7 +7,7 @@ using TMPro;
 public class PointsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI pointsText;
-    private int points = 0;
+    [SerializeField] private int points = 0;
 
     public void UpdatePoints(int pointsToAdd)
     {

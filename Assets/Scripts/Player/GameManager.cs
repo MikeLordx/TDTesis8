@@ -5,10 +5,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public int playerCoins = 100;
-    public TextMeshProUGUI coinText;
-    public GameState currentState;
+    [SerializeField] public static GameManager instance;
+    [SerializeField] public int playerCoins = 100;
+    [SerializeField] public TextMeshProUGUI coinText;
+    [SerializeField] public GameState currentState;
 
     private void Awake()
     {
@@ -16,6 +16,17 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+    }
+
+    public void AddCoins(int amount)
+    {
+        playerCoins += amount;
+        UpdateCoinUI();
+    }
+
+    void UpdateCoinUI()
+    {
+        coinText.text = playerCoins.ToString();
     }
 
     void Start()
@@ -27,17 +38,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(currentState.ToString());
-    }
-
-    public void AddCoins(int amount)
-    {
-        playerCoins += amount;
-        UpdateCoinUI();
-    }
-
-    private void UpdateCoinUI()
-    {
-        coinText.text = playerCoins.ToString();
     }
 
     public bool HasEnoughCoins(int towerCost)

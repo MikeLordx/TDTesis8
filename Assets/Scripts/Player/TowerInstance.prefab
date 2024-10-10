@@ -80,3 +80,14 @@ MonoBehaviour:
   - {fileID: 0}
   rotationSpeed: 50
   minDistanceBetweenTowers: 5
+  towerCosts: 01000000020000000100000002000000
+  towerImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  costTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

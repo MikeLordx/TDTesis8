@@ -79,7 +79,7 @@ public class TowerPlacementSystem : MonoBehaviour
 
     void SelectTower(int index)
     {
-        if (GameManager.instance.HasEnoughCoins(towerCosts[index])) // Verifica si hay suficientes monedas
+        if (GameManager.instance.HasEnoughCoins(towerCosts[index]))
         {
             selectedTowerIndex = index;
             isPlacingTower = true;
@@ -94,7 +94,7 @@ public class TowerPlacementSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("No tienes suficientes monedas para esta torre.");
+            Debug.Log("No tienes dinero eres pobre");
         }
     }
 
@@ -123,6 +123,28 @@ public class TowerPlacementSystem : MonoBehaviour
             if (Input.GetKeyDown(openMenuKey))
             {
                 CancelPlacement();
+            }
+        }
+    }
+
+    [SerializeField] private Image[] towerImages;
+    [SerializeField] private TextMeshProUGUI[] costTexts;
+
+    void UpdateTowerMenu()
+    {
+        for (int i = 0; i < towerButtons.Length; i++)
+        {
+            int playerCoins = GameManager.instance.playerCoins;
+
+            if (playerCoins >= towerCosts[i])
+            {
+                towerButtons[i].interactable = true;
+                towerButtons[i].GetComponent<CanvasGroup>().alpha = 1f;
+            }
+            else
+            {
+                towerButtons[i].interactable = false;
+                towerButtons[i].GetComponent<CanvasGroup>().alpha = 0.5f;
             }
         }
     }
