@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] public CharacterController controller;
-    [SerializeField] public float jumpHeight = 3f;
-    [SerializeField] public float gravity = -9.81f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    private Rigidbody rb;
+    private bool isGrounded;
 
-    [SerializeField] private Vector3 velocity;
-    [SerializeField] private bool isGrounded;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
+    }
 
     void Update()
     {
-        isGrounded = controller.isGrounded;
-
-        if (isGrounded && velocity.y < 0)
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            velocity.y = -2f;
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (!isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
         }
-        velocity.y += gravity * Time.deltaTime;
-        Vector3 move = new Vector3(0, velocity.y, 0);
-        controller.Move(move * Time.deltaTime);
     }
 }
