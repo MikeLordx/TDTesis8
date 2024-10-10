@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(GameState.MainMenu);
         UpdateCoinUI();
+        Time.timeScale = 1.0f;
     }
 
     private void Update()
@@ -49,6 +51,12 @@ public class GameManager : MonoBehaviour
     {
         playerCoins -= amount;
         UpdateCoinUI();
+    }
+
+    public void MoveNextScene(string nextScene)
+    {
+        SceneManager.LoadScene(nextScene);
+        ChangeState(GameState.Playing);
     }
 
     public void ChangeState(GameState newState)
