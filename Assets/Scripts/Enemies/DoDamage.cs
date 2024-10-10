@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DoDamage : MonoBehaviour
 {
-    private Player player;
-    private WaveSpawner spawner;
+    [SerializeField] private Player player;
+    [SerializeField] private WaveSpawner spawner;
 
     private void Start()
     {

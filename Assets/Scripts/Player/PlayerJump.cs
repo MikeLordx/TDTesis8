@@ -7,8 +7,8 @@ public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = -9.81f;
-    private Rigidbody rb;
-    private bool isGrounded;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private bool isGrounded;
 
     void Start()
     {
