@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TP : MonoBehaviour
 {
-    public Transform connectedTeleport;
-    public float cooldownTime = 5f;
+    [SerializeField] public Transform connectedTeleport;
+    private float cooldownTime = 20f;
 
     private bool canTeleport = true;
 

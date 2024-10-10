@@ -14,19 +14,12 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        TempEnemy enemy = collision.collider.GetComponent<TempEnemy>();
+        TempEnemy enemy = collision.gameObject.GetComponent<TempEnemy>();
+
         if (enemy != null)
-        { 
+        {
             enemy.TakeDamage(damage);
-            Debug.Log("Impactaron a yo con: " + damage + "de daño");
-        }
-        else
-        {
-            Debug.Log("No es yo o algun enemigo.");
-        }
-        if (bulletPooler != null)
-        {
-            bulletPooler.ReturnBullet(gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -8,21 +8,21 @@ public class TowerPlacementSystem : MonoBehaviour
 {
     #region Fields and Properties
 
-    [SerializeField] private GameObject[] towerPrefabs;
-    [SerializeField] private GameObject[] previewPrefabs;
-    [SerializeField] private float[] constructionTimes;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask enemyPathLayer;
-    [SerializeField] private LayerMask towerLayer;
-    [SerializeField] private KeyCode openMenuKey = KeyCode.X;
-    [SerializeField] private float buildRange = 10f;
-    [SerializeField] private float minDistanceFromPlayer = 2f;
-    [SerializeField] private Transform player;
-    [SerializeField] private GameObject towerMenuUI;
-    [SerializeField] private Button[] towerButtons;
-    [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float minDistanceBetweenTowers = 3f;
-    private float currentRotation = 0f;
+    [SerializeField] public GameObject[] towerPrefabs;
+    [SerializeField] public GameObject[] previewPrefabs;
+    [SerializeField] public float[] constructionTimes;
+    [SerializeField] public LayerMask groundLayer;
+    [SerializeField] public LayerMask enemyPathLayer;
+    [SerializeField] public LayerMask towerLayer;
+    [SerializeField] public KeyCode openMenuKey = KeyCode.X;
+    [SerializeField] public float buildRange = 10f;
+    [SerializeField] public float minDistanceFromPlayer = 2f;
+    [SerializeField] public Transform player;
+    [SerializeField] public GameObject towerMenuUI;
+    [SerializeField] public Button[] towerButtons;
+    [SerializeField] public float rotationSpeed = 10f;
+    [SerializeField] public float minDistanceBetweenTowers = 3f;
+    [SerializeField] public float currentRotation = 0f;
 
     private GameObject currentPreview;
     private int selectedTowerIndex = -1;

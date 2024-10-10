@@ -118,9 +118,10 @@ GameObject:
   - component: {fileID: 5396973281344102917}
   - component: {fileID: 4480211766114078341}
   - component: {fileID: 1853525821891110482}
+  - component: {fileID: 286809210384310433}
   m_Layer: 7
   m_Name: Tower 2
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,6 +232,21 @@ MonoBehaviour:
   firePoint: {fileID: 6440329325658766073}
   fireRate: 2
   range: 10
+  nextFireTime: 0
+  target: {fileID: 0}
+--- !u!114 &286809210384310433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732674989407946683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cca3a28431588e40b58f35bf01f05b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &9066707197131754410
 GameObject:
   m_ObjectHideFlags: 0
