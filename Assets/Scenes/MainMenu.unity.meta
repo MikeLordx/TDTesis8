@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/MainMenu.unity.meta
 guid: c6326db882b69244192ffe9538b4b044
+========
+guid: d863165a13f391c429149bf07a55e5be
+>>>>>>>> Juan:Assets/Scenes/VFX.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
