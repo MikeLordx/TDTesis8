@@ -146,5 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2681a3cfe34184548b8da01fdc4c5796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  pointsDropped: 1000
+  health: 100000
+  rewardAmount: 10
+  coinPrefab: {fileID: 5116205036510230594, guid: 2096b22122a204049aa4e7a5eef2ad94, type: 3}

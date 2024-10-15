@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 891643246262552222}
   - component: {fileID: 3804892235877523680}
   - component: {fileID: 5387027266614508352}
+  - component: {fileID: 2962251050461996755}
   m_Layer: 0
   m_Name: Ciclopes
   m_TagString: Enemy
@@ -190,6 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e558a2783b1f4e64a9e536535ba71bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  spawner: {fileID: 0}
 --- !u!114 &5387027266614508352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,5 +205,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2681a3cfe34184548b8da01fdc4c5796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  pointsDropped: 10
+  health: 10
+  rewardAmount: 10
+  coinPrefab: {fileID: 5116205036510230594, guid: 2096b22122a204049aa4e7a5eef2ad94, type: 3}
+--- !u!114 &2962251050461996755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954078855402617965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377c3a086c77cd54d849f2b011355160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  timeBetweenAttacks: 2
+  attackRange: 1.5
+  attackDelay: 0.5

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc85f2724c7d732429bac3b1712461c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCoins: 1
+  playerCoins: 10
   coinText: {fileID: 8738565113506296963}
   currentState: 0
 --- !u!4 &3902198
