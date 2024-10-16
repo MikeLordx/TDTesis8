@@ -157,7 +157,7 @@ MonoBehaviour:
   dodgeDistance: 5
   dodgeDuration: 0.1
   dodgeCooldown: 2
-  cameraTransform: {fileID: 6298679399114608105}
+  cameraTransform: {fileID: 0}
 --- !u!114 &454465145689183547
 MonoBehaviour:
   m_ObjectHideFlags: 0

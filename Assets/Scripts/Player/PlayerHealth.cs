@@ -64,7 +64,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        Debug.Log("Player has died!");
         gameObject.SetActive(false);
         StartCoroutine(Respawn());
     }
