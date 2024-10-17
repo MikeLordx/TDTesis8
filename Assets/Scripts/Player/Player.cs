@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;               // Maximum health the player can have
     public int currentHealth;                 // Current health of the player
     public TMP_Text healthText;               // Reference to the TextMeshPro UI component
+    public Transform character;
 
     public GameObject gameOverUI;
 
