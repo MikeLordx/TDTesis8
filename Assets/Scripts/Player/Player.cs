@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;               // Maximum health the player can have
     public int currentHealth;                 // Current health of the player
     public TMP_Text healthText;               // Reference to the TextMeshPro UI component
+
+    public GameObject gameOverUI;
 
     private void Awake()
     {
@@ -42,6 +45,8 @@ public class Player : MonoBehaviour
         if (currentHealth <= 0) 
         {
             GameManager.instance.ChangeState(GameState.GameOver);
+            Time.timeScale = 0f;
+            gameOverUI.SetActive(true);
         }
     }
 
