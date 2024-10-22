@@ -22,7 +22,7 @@ public class TempEnemy : MonoBehaviour
     void Die()
     {
         DropCoins();
-        waveSpawner.EnemyKilled();
+        //waveSpawner.EnemyKilled();
         GameManager.instance.AddCoins(rewardAmount);
         Destroy(gameObject);
     }

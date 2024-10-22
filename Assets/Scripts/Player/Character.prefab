@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4826798171571864499}
   - component: {fileID: 4424971174996303863}
   - component: {fileID: 454465145689183547}
+  - component: {fileID: 188316863463562143}
   - component: {fileID: 6949223210705580837}
   m_Layer: 0
   m_Name: Character
@@ -175,6 +176,24 @@ MonoBehaviour:
   respawnTime: 10
   respawnPoint: {fileID: 0}
   countdownText: {fileID: 0}
+--- !u!114 &188316863463562143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201981600492313939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7820a1ae77bb16a4b90fdf900fffe672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaEffectPrefab: {fileID: 651460445943008942, guid: d3a6bf644e666c64786e41dff6ef2ecd, type: 3}
+  radius: 5
+  damage: 50
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!54 &6949223210705580837
 Rigidbody:
   m_ObjectHideFlags: 0
