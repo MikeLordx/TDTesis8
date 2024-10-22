@@ -8072,6 +8072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fog_Center_Rute
       objectReference: {fileID: 0}
+    - target: {fileID: 2303230494804076465, guid: 72459c2c85b8bfd42a70a903dfdf5333, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2303230494804076467, guid: 72459c2c85b8bfd42a70a903dfdf5333, type: 3}
       propertyPath: scalingMode
       value: 1

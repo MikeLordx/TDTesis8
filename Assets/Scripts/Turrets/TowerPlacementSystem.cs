@@ -157,53 +157,24 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             Vector3 placementPosition = hit.point;
             float distanceFromPlayer = Vector3.Distance(player.position, placementPosition);
-            if (distanceFromPlayer <= buildRange && distanceFromPlayer >= minDistanceFromPlayer)
+            bool isValidPosition = distanceFromPlayer <= buildRange &&
+                                   distanceFromPlayer >= minDistanceFromPlayer &&
+                                   !IsThereATowerNearby(placementPosition, minDistanceBetweenTowers);
+            if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
             {
-                if (!IsThereATowerNearby(placementPosition, minDistanceBetweenTowers))
-                {
-                    if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, enemyPathLayer))
-                    {
-                        if (currentPreview != null)
-                        {
-                            currentPreview.SetActive(true);
-                            SetPreviewColor(Color.red);
-                        }
-                    }
-                    else
-                    {
-                        if (currentPreview != null)
-                        {
-                            currentPreview.SetActive(true);
-                            currentPreview.transform.position = placementPosition;
-                            SetPreviewColor(Color.green);
-                            RaycastHit groundHit;
-                            if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out groundHit, Mathf.Infinity, groundLayer))
-                            {
-                                placementPosition.y = groundHit.point.y;
-                                float previewHeightOffset = 1.0f;
-                                placementPosition.y += previewHeightOffset;
-                                currentPreview.transform.position = placementPosition;
-                            }
-                            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-                            if (scrollInput != 0f)
-                            {
-                                currentRotation += scrollInput * rotationSpeed;
-                                currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (currentPreview != null)
-                        currentPreview.SetActive(false);
-                }
+                placementPosition.y = hit.point.y;
+                float previewHeightOffset = 1.0f;
+                placementPosition.y += previewHeightOffset;
+                currentPreview.transform.position = placementPosition;
             }
-            else
+            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+            if (scrollInput != 0f)
             {
-                if (currentPreview != null)
-                    currentPreview.SetActive(false);
+                currentRotation += scrollInput * rotationSpeed;
+                currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
             }
+            SetPreviewColor(isValidPosition ? Color.green : Color.red);
+            currentPreview.SetActive(true);
         }
         else
         {
@@ -232,25 +203,32 @@ public class TowerPlacementSystem : MonoBehaviour
     {
         if (currentPreview != null && currentPreview.activeSelf)
         {
-            RaycastHit hit;
-            Vector3 towerPosition = currentPreview.transform.position;
-
-            if (Physics.Raycast(towerPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+            Renderer previewRenderer = currentPreview.GetComponentInChildren<Renderer>();
+            if (previewRenderer != null && previewRenderer.material.color == Color.green)
             {
-                towerPosition.y = hit.point.y;
-                float towerHeightOffset = 1.0f;
-                towerPosition.y += towerHeightOffset;
+                RaycastHit hit;
+                Vector3 towerPosition = currentPreview.transform.position;
+                if (Physics.Raycast(towerPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+                {
+                    towerPosition.y = hit.point.y;
+                    float towerHeightOffset = 1.0f;
+                    towerPosition.y += towerHeightOffset;
 
-                Quaternion towerRotation = currentPreview.transform.rotation;
+                    Quaternion towerRotation = currentPreview.transform.rotation;
 
-                StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, towerRotation));
+                    StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, towerRotation));
 
-                GameManager.instance.SpendCoins(towerCosts[selectedTowerIndex]);
+                    GameManager.instance.SpendCoins(towerCosts[selectedTowerIndex]);
 
-                Destroy(currentPreview);
-                currentPreview = null;
-                selectedTowerIndex = -1;
-                isPlacingTower = false;
+                    Destroy(currentPreview);
+                    currentPreview = null;
+                    selectedTowerIndex = -1;
+                    isPlacingTower = false;
+                }
+            }
+            else
+            {
+                Debug.Log("No sirve, porque aquí no se puede");
             }
         }
     }
