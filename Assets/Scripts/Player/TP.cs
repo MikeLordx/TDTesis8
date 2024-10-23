@@ -5,7 +5,7 @@ using UnityEngine;
 public class TP : MonoBehaviour
 {
     [SerializeField] public Transform connectedTeleport;
-    private float cooldownTime = 20f;
+    public float cooldownTime = 20f;
 
     private bool canTeleport = true;
 
