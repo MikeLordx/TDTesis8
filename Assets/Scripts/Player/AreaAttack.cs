@@ -13,11 +13,11 @@ public class AreaAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            CastAreaSpellFromCenter();
+            StartCoroutine(CastAreaSpellFromCenter());
         }
     }
 
-    void CastAreaSpellFromCenter()
+    IEnumerator CastAreaSpellFromCenter()
     {
         // Define el centro de la pantalla
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -30,10 +30,12 @@ public class AreaAttack : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
             // Instancia el área de efecto en el punto de impacto
-            Instantiate(areaEffectPrefab, hit.point, Quaternion.identity);
+            GameObject vfx = Instantiate(areaEffectPrefab, hit.point, Quaternion.identity);
 
             // Aplica daño en el área
             ApplyAreaDamage(hit.point);
+            yield return new WaitForSeconds(4.3f);
+            Destroy(vfx);
         }
     }
 

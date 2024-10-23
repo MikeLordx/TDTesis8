@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    void Start()
+    {
+        UpdateCoinUI();
+        Time.timeScale = 1.0f;
+    }
 
     public void AddCoins(int amount)
     {
@@ -30,12 +35,6 @@ public class GameManager : MonoBehaviour
         coinText.text = playerCoins.ToString();
     }
 
-    void Start()
-    {
-        ChangeState(GameState.MainMenu);
-        UpdateCoinUI();
-        Time.timeScale = 1.0f;
-    }
 
     private void Update()
     {
@@ -65,16 +64,20 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.MainMenu:
-                // Handle MainMenu logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.Playing:
-                // Handle Playing logic
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.Paused:
-                // Handle Paused logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.GameOver:
-                // Handle GameOver logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
         }
     }

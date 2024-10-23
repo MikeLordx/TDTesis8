@@ -3471,6 +3471,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6439008706414714204, guid: d70809d38e7b9a647b08cac5ba4e87a9, type: 3}
+      propertyPath: maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6439008706414714204, guid: d70809d38e7b9a647b08cac5ba4e87a9, type: 3}
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 103500662}
