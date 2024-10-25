@@ -33,9 +33,21 @@ public class TowerPlacementSystem : MonoBehaviour
 
     #region Unity Callbacks
 
+    public Transform centerPoint;
+    public float radius = 200f;
+
     void Start()
     {
         InitializeTowerMenu();
+        float angleStep = 360f / towerButtons.Length;
+        for (int i = 0; i < towerButtons.Length; i++)
+        {
+            float angle = i * angleStep;
+            float xPos = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+            float yPos = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+
+            towerButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
+        }
     }
 
     void Update()
@@ -46,6 +58,7 @@ public class TowerPlacementSystem : MonoBehaviour
     #endregion
 
     #region Menu Handling
+
 
     void InitializeTowerMenu()
     {
@@ -66,7 +79,7 @@ public class TowerPlacementSystem : MonoBehaviour
         bool isActive = towerMenuUI.activeSelf;
         towerMenuUI.SetActive(!isActive);
 
-        if (towerMenuUI.activeSelf)
+        if (!isActive)
         {
             isPlacingTower = false;
             if (currentPreview != null)
@@ -110,6 +123,10 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             ToggleTowerMenu();
         }
+        if (towerMenuUI.activeSelf)
+        {
+            HandleWheelSelection();
+        }
 
         if (isPlacingTower && selectedTowerIndex != -1)
         {
@@ -125,6 +142,52 @@ public class TowerPlacementSystem : MonoBehaviour
                 CancelPlacement();
             }
         }
+    }
+
+    void HandleWheelSelection()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 center = new Vector2(Screen.width / 2, Screen.height / 2);
+        Vector2 direction = mousePosition - center;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle < 0) angle += 360;
+        if (angle >= 0 && angle < 90)
+        {
+            HighlightTowerButton(0);
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectTower(0);
+            }
+        }
+        else if (angle >= 90 && angle < 180)
+        {
+            HighlightTowerButton(1);
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectTower(1);
+            }
+        }
+        else if (angle >= 180 && angle < 270)
+        {
+            HighlightTowerButton(2);
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectTower(2);
+            }
+        }
+        /*else if (angle >= 270 && angle < 360)
+        {
+            HighlightTowerButton(3);
+            if (Input.GetMouseButtonDown(0))
+            {
+                SelectTower(3);
+            }
+        }*/
+    }
+
+    void HighlightTowerButton(int index)
+    {
+        //Color o lo que sea
     }
 
     [SerializeField] private Image[] towerImages;
