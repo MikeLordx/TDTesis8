@@ -2363,6 +2363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 188316863463562143, guid: c1bf975978e84c54e8dc88028a674195, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1863322967203305476, guid: c1bf975978e84c54e8dc88028a674195, type: 3}
       propertyPath: mouseSensitivity
       value: 100
@@ -3401,10 +3405,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2570853234655791567, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a4afe23b0457c784c8e8875016bbb2a0, type: 3}
     - target: {fileID: 2817891030377167685, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: eb1da18bb8e0e684c8f848bd78c8f81f, type: 3}
+    - target: {fileID: 4223966883227453566, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e9fd61e1f6dc2c49b9e433c87bdd8d9, type: 3}
+    - target: {fileID: 5103295747885680884, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8f0d28809749c0847ba755528a7c1663, type: 3}
     - target: {fileID: 6676140405618357051, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
       propertyPath: m_Name
       value: Tower Ui

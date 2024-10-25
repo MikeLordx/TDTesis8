@@ -86,8 +86,6 @@ public class PlayerHealth : MonoBehaviour
         gameObject.SetActive(true);
         isDead = false;
         countdownText.gameObject.SetActive(false);
-
-        Debug.Log("Player has respawned!");
     }
 
     public void Heal(float amount)
