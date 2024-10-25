@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
 
     [Tooltip("La barra de vida en la UI. Déjalo vacío si no se usa.")]
-    public Slider healthBar;
+    public Image healthBar;
 
     [Header("Respawn Settings")]
     [Tooltip("El tiempo en segundos antes de reaparecer.")]
@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("El texto para mostrar el contador.")]
     public TextMeshProUGUI countdownText;
 
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
     private bool isDead = false;
 
     private void Start()
@@ -33,13 +33,21 @@ public class PlayerHealth : MonoBehaviour
 
         if (healthBar != null)
         {
-            healthBar.maxValue = maxHealth;
-            healthBar.value = currentHealth;
+            healthBar.fillAmount = maxHealth / 100;
+            healthBar.fillAmount = currentHealth / 100;
         }
 
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.J))
+        {
+            TakeDamage(10);
         }
     }
 
@@ -52,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (healthBar != null)
         {
-            healthBar.value = currentHealth;
+            healthBar.fillAmount = currentHealth / 100;
         }
 
         if (currentHealth <= 0)
@@ -81,7 +89,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         if (healthBar != null)
         {
-            healthBar.value = currentHealth;
+            healthBar.fillAmount = currentHealth / 100;
         }
         gameObject.SetActive(true);
         isDead = false;
@@ -99,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (healthBar != null)
         {
-            healthBar.value = currentHealth;
+            healthBar.fillAmount = currentHealth / 100;
         }
     }
 }
