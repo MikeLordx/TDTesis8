@@ -6,14 +6,17 @@ public class AreaAttack : MonoBehaviour
 {
     public GameObject areaEffectPrefab;
     public float radius = 5f;
+    public float cooldownTime = 1f;
+    private float nextFireTime = 0f;
     public int damage = 50;
     public LayerMask groundLayer;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > nextFireTime)
         {
             StartCoroutine(CastAreaSpellFromCenter());
+            nextFireTime = Time.time + cooldownTime;
         }
     }
 
