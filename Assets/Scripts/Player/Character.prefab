@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 454465145689183547}
   - component: {fileID: 188316863463562143}
   - component: {fileID: 7561356825319528431}
+  - component: {fileID: 5578049281746458182}
   - component: {fileID: 6949223210705580837}
   m_Layer: 0
   m_Name: Character
@@ -209,6 +210,7 @@ MonoBehaviour:
   respawnTime: 10
   respawnPoint: {fileID: 0}
   countdownText: {fileID: 0}
+  currentHealth: 0
 --- !u!114 &188316863463562143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7820a1ae77bb16a4b90fdf900fffe672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mana: {fileID: 0}
   areaEffectPrefab: {fileID: 651460445943008942, guid: d3a6bf644e666c64786e41dff6ef2ecd, type: 3}
   radius: 5
   cooldownTime: 5
@@ -243,6 +246,22 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2999945099718532975, guid: e8871f03107a57545b3f8cfed7ba844c, type: 3}
   firePoint: {fileID: 4071019682293484597}
   cooldownTime: 1
+  mana: {fileID: 0}
+--- !u!114 &5578049281746458182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201981600492313939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bd3e431608be249ba3ed2452cd0ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 100
+  manaBar: {fileID: 0}
+  currentMana: 0
 --- !u!54 &6949223210705580837
 Rigidbody:
   m_ObjectHideFlags: 0
