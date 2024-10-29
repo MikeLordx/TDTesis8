@@ -144,13 +144,32 @@ public class TowerPlacementSystem : MonoBehaviour
         }
     }
 
+    void HighlightTowerButton(int index)
+    {
+        for (int i = 0; i < towerButtons.Length; i++)
+        {
+            if (i == index)
+            {
+                towerButtons[i].GetComponent<Image>().color = Color.grey;
+                towerButtons[i].transform.localScale = Vector3.one * 1.2f;
+            }
+            else
+            {
+                towerButtons[i].GetComponent<Image>().color = Color.white;
+                towerButtons[i].transform.localScale = Vector3.one;
+            }
+        }
+    }
+
     void HandleWheelSelection()
     {
         Vector2 mousePosition = Input.mousePosition;
         Vector2 center = new Vector2(Screen.width / 2, Screen.height / 2);
         Vector2 direction = mousePosition - center;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
         if (angle < 0) angle += 360;
+
         if (angle >= 0 && angle < 90)
         {
             HighlightTowerButton(0);
@@ -183,11 +202,6 @@ public class TowerPlacementSystem : MonoBehaviour
                 SelectTower(3);
             }
         }*/
-    }
-
-    void HighlightTowerButton(int index)
-    {
-        //Color o lo que sea
     }
 
     [SerializeField] private Image[] towerImages;
