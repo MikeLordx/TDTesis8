@@ -6,13 +6,16 @@ public class MeleeAttack : MonoBehaviour
 {
     public float attackRange = 1.5f;
     public int damageAmount = 20;
-    private string enemyTag = "Enemy";
+    public float attackCooldown = 1.0f;
+
+    private float lastAttackTime = 0f;
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time >= lastAttackTime + attackCooldown)
         {
             PerformMeleeAttack();
+            lastAttackTime = Time.time;
         }
     }
 
@@ -22,7 +25,7 @@ public class MeleeAttack : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag(enemyTag))
+            if (hitCollider.CompareTag("Enemy"))
             {
                 TempEnemy enemy = hitCollider.GetComponent<TempEnemy>();
                 if (enemy != null)
