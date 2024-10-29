@@ -28,13 +28,13 @@ public class TowerPlacementSystem : MonoBehaviour
     private int selectedTowerIndex = -1;
     private bool isPlacingTower = false;
     [SerializeField] private int[] towerCosts;
+    public Transform centerPoint;
+    public float radius = 250f;
 
     #endregion
 
     #region Unity Callbacks
 
-    public Transform centerPoint;
-    public float radius = 200f;
 
     void Start()
     {
@@ -151,7 +151,7 @@ public class TowerPlacementSystem : MonoBehaviour
             if (i == index)
             {
                 towerButtons[i].GetComponent<Image>().color = Color.grey;
-                towerButtons[i].transform.localScale = Vector3.one * 1.2f;
+                towerButtons[i].transform.localScale = Vector3.one * 2f;
             }
             else
             {

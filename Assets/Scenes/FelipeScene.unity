@@ -1462,7 +1462,7 @@ PrefabInstance:
       objectReference: {fileID: 4907463580111156422}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: radius
-      value: 350
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: coinText
