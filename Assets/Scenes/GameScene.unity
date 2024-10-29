@@ -5516,7 +5516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: buildRange
@@ -9868,11 +9868,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5495597845498163651, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
   m_PrefabInstance: {fileID: 851317152}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1788537114 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7659167803681642272, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-  m_PrefabInstance: {fileID: 851317152}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1788537115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9892,7 +9887,7 @@ MonoBehaviour:
   center: {fileID: 883978329}
   radius: 100
   menuWheel: {fileID: 894054796}
-  player: {fileID: 1788537114}
+  player: {fileID: 1287019660}
   maxRadius: 100
 --- !u!1 &1794038031
 GameObject:
