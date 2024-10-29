@@ -87,6 +87,13 @@ public class TowerPlacementSystem : MonoBehaviour
                 Destroy(currentPreview);
                 currentPreview = null;
             }
+            GameManager.instance.ChangeState(GameState.Paused);
+            Debug.Log("Si pauso");
+        }
+        else
+        {
+            GameManager.instance.ChangeState(GameState.Playing);
+            Debug.Log("Ya juega");
         }
     }
 
@@ -194,7 +201,7 @@ public class TowerPlacementSystem : MonoBehaviour
                 SelectTower(2);
             }
         }
-        /*else if (angle >= 270 && angle < 360)
+        /*else if (angle >= 270 && angle < 360) por si acaso la cuarta torre
         {
             HighlightTowerButton(3);
             if (Input.GetMouseButtonDown(0))
@@ -305,7 +312,7 @@ public class TowerPlacementSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("No sirve, porque aquí no se puede");
+                Debug.Log("Esta rojo no se puede hombre");
             }
         }
     }
