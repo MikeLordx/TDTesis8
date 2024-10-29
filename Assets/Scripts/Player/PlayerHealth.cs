@@ -6,36 +6,18 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [Tooltip("Cantidad máxima de vida del jugador.")]
-    public float maxHealth = 100f;
-
-    [Tooltip("La barra de vida en la UI. Déjalo vacío si no se usa.")]
-    public Image healthBar;
-
-    [Header("Respawn Settings")]
-    [Tooltip("El tiempo en segundos antes de reaparecer.")]
-    public float respawnTime = 10f;
-
-    [Tooltip("El punto donde el jugador reaparecerá.")]
-    public Transform respawnPoint;
-
-    [Header("UI Elements")]
-    [Tooltip("El texto para mostrar el contador.")]
-    public TextMeshProUGUI countdownText;
-
+    [SerializeField] public float maxHealth = 100f;
+    [SerializeField] public Image healthBar;
+    [SerializeField] public float respawnTime = 10f;
+    [SerializeField] public Transform respawnPoint;
+    [SerializeField] public TextMeshProUGUI countdownText;
     [SerializeField] private float currentHealth;
     private bool isDead = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
-
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = maxHealth / 100;
-            healthBar.fillAmount = currentHealth / 100;
-        }
+        UpdateHealthUI();
 
         if (countdownText != null)
         {
@@ -45,10 +27,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.J))
+        /*if (Input.GetKeyUp(KeyCode.J))
         {
             TakeDamage(10);
-        }
+        }*/
     }
 
     public void TakeDamage(float damage)
@@ -57,15 +39,19 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = currentHealth / 100;
-        }
+        UpdateHealthUI();
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    private void UpdateHealthUI()
+    {
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = currentHealth / maxHealth;
         }
     }
 
@@ -85,12 +71,10 @@ public class PlayerHealth : MonoBehaviour
             countdownText.text = i.ToString();
             yield return new WaitForSeconds(1f);
         }
+
         transform.position = respawnPoint.position;
         currentHealth = maxHealth;
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = currentHealth / 100;
-        }
+        UpdateHealthUI();
         gameObject.SetActive(true);
         isDead = false;
         countdownText.gameObject.SetActive(false);
@@ -102,10 +86,6 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = currentHealth / 100;
-        }
+        UpdateHealthUI();
     }
 }

@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class TowerAttackEnemy : MonoBehaviour
 {
-    [Header("Attack Settings")]
-    [Tooltip("Daño infligido por el enemigo por ataque.")]
-    public float damage = 10f;
-
-    [Tooltip("Tiempo entre cada ataque en segundos.")]
-    public float timeBetweenAttacks = 2f;
-
-    [Tooltip("Rango en el que el enemigo puede atacar la torre.")]
-    public float attackRange = 1.5f;
-
-    [Tooltip("Delay antes de aplicar el daño a la torre.")]
-    public float attackDelay = 0.5f;
+    [SerializeField] public float damage = 10f;
+    [SerializeField] public float timeBetweenAttacks = 2f;
+    [SerializeField] public float attackRange = 1.5f;
+    [SerializeField] public float attackDelay = 0.5f;
 
     private float attackCooldown;
     private Transform targetTower;
@@ -23,7 +15,7 @@ public class TowerAttackEnemy : MonoBehaviour
     private void Start()
     {
         attackCooldown = 0f;
-        targetTower = GameObject.FindGameObjectWithTag("Tower")?.transform;
+        targetTower = GameObject.FindGameObjectWithTag("Tower").transform;
     }
 
     private void Update()

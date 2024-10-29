@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCoins: 10
   coinText: {fileID: 8738565113506296963}
-  currentState: 0
+  currentState: 1
 --- !u!4 &3902198
 Transform:
   m_ObjectHideFlags: 0
@@ -619,18 +619,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3535933135478801373}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: costTexts.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerCosts.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerImages.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: costTexts.Array.data[0]
       value: 
       objectReference: {fileID: 5213857032606892811}
@@ -646,22 +634,6 @@ PrefabInstance:
       propertyPath: costTexts.Array.data[3]
       value: 
       objectReference: {fileID: 2403474739245105957}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerCosts.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerCosts.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerCosts.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
-      propertyPath: towerCosts.Array.data[3]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: towerImages.Array.data[0]
       value: 
@@ -2416,7 +2388,7 @@ PrefabInstance:
       value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2603624604418539127, guid: c1bf975978e84c54e8dc88028a674195, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3405,30 +3377,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2570853234655791567, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+    - target: {fileID: 3461062105788513251, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440436708698195468, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440436708698195468, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a4afe23b0457c784c8e8875016bbb2a0, type: 3}
-    - target: {fileID: 2817891030377167685, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eb1da18bb8e0e684c8f848bd78c8f81f, type: 3}
-    - target: {fileID: 4223966883227453566, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4e9fd61e1f6dc2c49b9e433c87bdd8d9, type: 3}
-    - target: {fileID: 5103295747885680884, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8f0d28809749c0847ba755528a7c1663, type: 3}
+      objectReference: {fileID: 21300000, guid: dde3095dc88099643953e4068036896d, type: 3}
+    - target: {fileID: 5440436708698195468, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6676140405618357051, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
       propertyPath: m_Name
       value: Tower Ui
       objectReference: {fileID: 0}
-    - target: {fileID: 7848303864659056747, guid: 748f03e21d2c0bb4aab758ff93d77418, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eb1da18bb8e0e684c8f848bd78c8f81f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

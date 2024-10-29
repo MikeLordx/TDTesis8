@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 7561356825319528431}
   - component: {fileID: 5578049281746458182}
   - component: {fileID: 6949223210705580837}
+  - component: {fileID: 5195555672659017517}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -231,6 +232,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  manaCost: 50
+  cooldownImage: {fileID: 0}
+  cooldownText: {fileID: 0}
+  lowManaImage: {fileID: 0}
 --- !u!114 &7561356825319528431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +252,10 @@ MonoBehaviour:
   firePoint: {fileID: 4071019682293484597}
   cooldownTime: 1
   mana: {fileID: 0}
+  manaCost: 15
+  cooldownImage: {fileID: 0}
+  cooldownText: {fileID: 0}
+  lowManaImage: {fileID: 0}
 --- !u!114 &5578049281746458182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +271,9 @@ MonoBehaviour:
   maxMana: 100
   manaBar: {fileID: 0}
   currentMana: 0
+  manaRegenRate: 5
+  regenInterval: 1
+  regenStartDelay: 1.5
 --- !u!54 &6949223210705580837
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -289,6 +301,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &5195555672659017517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7201981600492313939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccec794a9e93c40b4db2ceeb58736f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  damageAmount: 20
+  attackCooldown: 2
 --- !u!1001 &3311462866580049074
 PrefabInstance:
   m_ObjectHideFlags: 0
