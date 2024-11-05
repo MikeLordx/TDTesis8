@@ -51,9 +51,9 @@ MonoBehaviour:
   - {fileID: 7732674989407946683, guid: 271ea3ebd148ac04185d3a5524bda3fa, type: 3}
   previewPrefabs:
   - {fileID: 7732674989407946683, guid: 8e6eed4e925d9b443922a6e57bad3134, type: 3}
+  - {fileID: 7732674989407946683, guid: 462c44588ab70e14ca2dd8c93e18b18c, type: 3}
   - {fileID: 7732674989407946683, guid: 5415603b1bea696489f7d874c4460938, type: 3}
   - {fileID: 7732674989407946683, guid: a4695710e30c59e4ab8a294640a4b3bf, type: 3}
-  - {fileID: 7732674989407946683, guid: 462c44588ab70e14ca2dd8c93e18b18c, type: 3}
   constructionTimes:
   - 2
   - 5
@@ -83,7 +83,7 @@ MonoBehaviour:
   currentRotation: 0
   towerCosts: 01000000020000000100000002000000
   centerPoint: {fileID: 0}
-  radius: 200
+  radius: 360
   towerImages:
   - {fileID: 0}
   - {fileID: 0}

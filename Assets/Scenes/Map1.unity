@@ -615,6 +615,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1541603284}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: radius
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: centerPoint
+      value: 
+      objectReference: {fileID: 7012148964539214725}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: towerMenuUI
       value: 
       objectReference: {fileID: 3535933135478801373}
@@ -666,6 +674,18 @@ PrefabInstance:
       propertyPath: towerButtons.Array.data[3]
       value: 
       objectReference: {fileID: 4541808600810706064}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: previewPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 7732674989407946683, guid: 462c44588ab70e14ca2dd8c93e18b18c, type: 3}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: previewPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7732674989407946683, guid: 5415603b1bea696489f7d874c4460938, type: 3}
+    - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: previewPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 7732674989407946683, guid: a4695710e30c59e4ab8a294640a4b3bf, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

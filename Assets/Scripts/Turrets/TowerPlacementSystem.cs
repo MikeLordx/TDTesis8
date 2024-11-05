@@ -39,14 +39,11 @@ public class TowerPlacementSystem : MonoBehaviour
     void Start()
     {
         InitializeTowerMenu();
-        float angleStep = 360f / towerButtons.Length;
-        for (int i = 0; i < towerButtons.Length; i++)
+        if (towerButtons.Length >= 3)
         {
-            float angle = i * angleStep;
-            float xPos = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
-            float yPos = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
-
-            towerButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, yPos);
+            towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(1f, 300f);
+            towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f, -250f);
+            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(300f, -250f);
         }
     }
 
@@ -158,7 +155,7 @@ public class TowerPlacementSystem : MonoBehaviour
             if (i == index)
             {
                 towerButtons[i].GetComponent<Image>().color = Color.grey;
-                towerButtons[i].transform.localScale = Vector3.one * 2f;
+                //towerButtons[i].transform.localScale = Vector3.one * 2f;
             }
             else
             {

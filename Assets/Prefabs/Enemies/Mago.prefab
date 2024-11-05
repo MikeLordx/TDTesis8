@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7267721042405621844}
   - component: {fileID: 6843360909769861355}
   - component: {fileID: 7311549286955499788}
+  - component: {fileID: 1283845391887266425}
   - component: {fileID: 891643246262552222}
   - component: {fileID: 3804892235877523680}
   - component: {fileID: 5387027266614508352}
@@ -163,7 +164,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &891643246262552222
+--- !u!114 &1283845391887266425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +173,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7954078855402617965}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecff53fe26aa04743af652d83aa71742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerDetectionRange: 5
+  towerDetectionRange: 10
+--- !u!114 &891643246262552222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954078855402617965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee9a0901b0cf01498ae5e0811d0cc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -179,7 +198,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  currentWaypointIndex: 0
+  playerDetectionRange: 5
 --- !u!114 &3804892235877523680
 MonoBehaviour:
   m_ObjectHideFlags: 0
