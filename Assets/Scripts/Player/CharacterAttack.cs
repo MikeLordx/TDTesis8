@@ -18,8 +18,10 @@ public class CharacterAttack : MonoBehaviour
     public Image cooldownImage;          // Imagen de la UI para mostrar el cooldown
     public TextMeshProUGUI cooldownText; // Texto TMP para mostrar el tiempo restante del cooldown
     public Image lowManaImage;           // Imagen que se muestra si el maná es insuficiente
+    public GameObject pause;
 
     private float nextFireTime = 0f;
+    public bool pauseIsActive;
 
     private void Start()
     {
@@ -39,6 +41,8 @@ public class CharacterAttack : MonoBehaviour
         {
             lowManaImage.gameObject.SetActive(false);
         }
+
+        pauseIsActive = false; 
     }
 
     void Update()
@@ -68,6 +72,21 @@ public class CharacterAttack : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.instance.currentState == GameState.Paused)
+            {
+                pause.SetActive(false);
+                GameManager.instance.ChangeState(GameState.Playing);
+            }
+            else
+            {
+                pause.SetActive(true);
+                GameManager.instance.ChangeState(GameState.Paused);
+            }
+        }
+
     }
 
     void LaunchProjectile()

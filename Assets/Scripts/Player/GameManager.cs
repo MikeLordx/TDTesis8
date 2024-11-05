@@ -58,6 +58,15 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Playing);
     }
 
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
     public void ChangeState(GameState newState)
     {
         currentState = newState;
