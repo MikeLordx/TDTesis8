@@ -10,31 +10,47 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private int currentWaypointIndex = 0;
     private Transform player;
+    private PlayerHealth playerHealth;
     private bool chasingPlayer = false;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+            playerHealth = playerObject.GetComponent<PlayerHealth>();
+        }
+
         Walking();
     }
 
     void Update()
     {
-        if (player != null && Vector3.Distance(transform.position, player.position) <= playerDetectionRange)
+        if (player != null && playerHealth != null && !playerHealth.isDead)
         {
-            chasingPlayer = true;
+            if (Vector3.Distance(transform.position, player.position) <= playerDetectionRange)
+            {
+                chasingPlayer = true;
+            }
+            else
+            {
+                chasingPlayer = false;
+            }
+
+            if (chasingPlayer)
+            {
+                navMeshAgent.SetDestination(player.position);
+            }
+            else
+            {
+                Walking();
+            }
         }
         else
         {
             chasingPlayer = false;
-        }
-        if (chasingPlayer)
-        {
-            navMeshAgent.SetDestination(player.position);
-        }
-        else
-        {
             Walking();
         }
     }

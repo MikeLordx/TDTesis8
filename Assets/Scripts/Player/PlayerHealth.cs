@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,25 +11,22 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public Transform respawnPoint;
     [SerializeField] public TextMeshProUGUI countdownText;
     [SerializeField] private float currentHealth;
-    private bool isDead = false;
+    public bool isDead = false;
+    [SerializeField] private Camera respawnCamera;
+    [SerializeField] private Camera playerCamera;
 
     private void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
-
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
         }
-    }
-
-    private void Update()
-    {
-        /*if (Input.GetKeyUp(KeyCode.J))
+        if (respawnCamera != null)
         {
-            TakeDamage(10);
-        }*/
+            respawnCamera.gameObject.SetActive(false);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -58,26 +54,82 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         isDead = true;
-        gameObject.SetActive(false);
+        var collider = GetComponent<Collider>();
+        if (collider != null)
+            collider.enabled = false;
+
+        var movement = GetComponent<PlayerMovement>();
+        if (movement != null)
+            movement.enabled = false;
+
+        if (respawnCamera != null)
+        {
+            respawnCamera.gameObject.SetActive(true);
+            Debug.Log("Respawn camera activated.");
+        }
+        if (playerCamera != null)
+        {
+            playerCamera.gameObject.SetActive(false);
+            Debug.Log("Player camera deactivated.");
+        }
+
         StartCoroutine(Respawn());
     }
 
     private IEnumerator Respawn()
     {
-        countdownText.gameObject.SetActive(true);
-
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+        }
         for (int i = (int)respawnTime; i > 0; i--)
         {
-            countdownText.text = i.ToString();
+            if (countdownText != null)
+            {
+                countdownText.text = i.ToString();
+            }
             yield return new WaitForSeconds(1f);
         }
-
-        transform.position = respawnPoint.position;
+        transform.position = respawnPoint.position + Vector3.up * 0.5f;
         currentHealth = maxHealth;
         UpdateHealthUI();
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = false;
+        }
+        UnityEngine.AI.NavMeshAgent navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.enabled = true;
+        }
+
+        Collider playerCollider = GetComponent<Collider>();
+        if (playerCollider != null)
+        {
+            playerCollider.enabled = true;
+        }
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+        if (respawnCamera != null)
+        {
+            respawnCamera.gameObject.SetActive(false);
+        }
+        if (playerCamera != null)
+        {
+            playerCamera.gameObject.SetActive(true);
+        }
         gameObject.SetActive(true);
         isDead = false;
-        countdownText.gameObject.SetActive(false);
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
     }
 
     public void Heal(float amount)

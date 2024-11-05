@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 3124863515206372292, guid: 937b6db8fadfeb249aaecd08b2423678, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1577036610771950093}
   fireRate: 1.5
   range: 10
   nextFireTime: 0

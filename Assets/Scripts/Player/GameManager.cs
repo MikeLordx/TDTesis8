@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentState.ToString());
+        //Debug.Log(currentState.ToString());
     }
 
     public bool HasEnoughCoins(int towerCost)
