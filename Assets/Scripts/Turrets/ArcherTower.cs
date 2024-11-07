@@ -10,6 +10,8 @@ public class ArcherTower : MonoBehaviour
     [SerializeField] public float range = 10f;
     [SerializeField] private float nextFireTime = 0f;
     [SerializeField] private Transform target;
+    [SerializeField] private float damage = 30f;
+    private bool maxLevel = false;
 
     void Update()
     {
@@ -47,16 +49,35 @@ public class ArcherTower : MonoBehaviour
         GameObject arrow = bulletPool.GetBullet();
         arrow.transform.position = firePoint.position;
         arrow.transform.rotation = firePoint.rotation;
+        float currentDamage = damage;
 
-        Vector3 direction = (target.position - firePoint.position).normalized;
-        arrow.GetComponent<Rigidbody>().velocity = direction * 20f;
+        if (Random.value <= 0.1f)
+        {
+            currentDamage *= 1.5f;
+        }
 
-        StartCoroutine(ReturnArrowAfterTime(arrow, 5f));
-    }
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        arrowScript.SetBulletPooler(bulletPool);
+        arrowScript.damage = currentDamage;
+        arrowScript.SetTarget(target);
 
-    IEnumerator ReturnArrowAfterTime(GameObject arrow, float lifetime)
-    {
-        yield return new WaitForSeconds(lifetime);
-        bulletPool.ReturnBullet(arrow);
+        if (maxLevel)
+        {
+            RaycastHit[] hits = Physics.RaycastAll(firePoint.position, (target.position - firePoint.position).normalized, range);
+            int penetratedEnemies = 0;
+            foreach (var hit in hits)
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    TempEnemy enemy = hit.collider.GetComponent<TempEnemy>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(currentDamage);
+                        penetratedEnemies++;
+                        if (penetratedEnemies >= 2) break;
+                    }
+                }
+            }
+        }
     }
 }
