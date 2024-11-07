@@ -4788,11 +4788,6 @@ MonoBehaviour:
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
     enemiesCount: 0a0000000400000001000000
     spawnRate: 1.5
-  - enemies:
-    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: ec0ba6cbab92344489f47ffaacb1d98e, type: 3}
-    enemiesCount: 0f00000003000000
-    spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 24681803}
   timeBetweenWaves: 20
@@ -5842,11 +5837,6 @@ MonoBehaviour:
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
     enemiesCount: 0a0000000400000001000000
-    spawnRate: 1.5
-  - enemies:
-    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: ec0ba6cbab92344489f47ffaacb1d98e, type: 3}
-    enemiesCount: 0f00000003000000
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 791752}
@@ -7781,11 +7771,6 @@ MonoBehaviour:
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
     enemiesCount: 0a0000000400000001000000
     spawnRate: 1.5
-  - enemies:
-    - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: ec0ba6cbab92344489f47ffaacb1d98e, type: 3}
-    enemiesCount: 0f00000003000000
-    spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 1150161158}
   timeBetweenWaves: 20
@@ -7840,8 +7825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 183.1, y: 108}
+  m_AnchoredPosition: {x: 0, y: 5}
+  m_SizeDelta: {x: 170, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164119913
 MonoBehaviour:
@@ -8362,8 +8347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 86, y: 71}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 20, y: 200}
+  m_SizeDelta: {x: 10, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1287019659
 PrefabInstance:
@@ -8696,14 +8681,14 @@ RectTransform:
   m_GameObject: {fileID: 1346162844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3099881, y: 1.3099881, z: 1.3099881}
+  m_LocalScale: {x: 1.5, y: 1.3, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 114473626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19, y: -337.5}
+  m_AnchoredPosition: {x: 84, y: -471}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346162846
