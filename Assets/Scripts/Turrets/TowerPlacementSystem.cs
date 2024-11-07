@@ -22,7 +22,7 @@ public class TowerPlacementSystem : MonoBehaviour
     [SerializeField] public Button[] towerButtons;
     [SerializeField] public float rotationSpeed = 10f;
     [SerializeField] public float minDistanceBetweenTowers = 3f;
-    [SerializeField] public float currentRotation = 0f;
+    public float currentRotation = 0f;
 
     private GameObject currentPreview;
     private int selectedTowerIndex = -1;
@@ -41,9 +41,9 @@ public class TowerPlacementSystem : MonoBehaviour
         InitializeTowerMenu();
         if (towerButtons.Length >= 3)
         {
-            towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(1f, 300f);
-            towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f, -250f);
-            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(300f, -250f);
+            towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(1f, 280f);
+            towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f, -230f);
+            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(300f, -230f);
         }
     }
 
@@ -85,12 +85,10 @@ public class TowerPlacementSystem : MonoBehaviour
                 currentPreview = null;
             }
             GameManager.instance.ChangeState(GameState.Paused);
-            Debug.Log("Si pauso");
         }
         else
         {
             GameManager.instance.ChangeState(GameState.Playing);
-            Debug.Log("Ya juega");
         }
     }
 
@@ -102,12 +100,7 @@ public class TowerPlacementSystem : MonoBehaviour
             isPlacingTower = true;
             towerMenuUI.SetActive(false);
 
-            if (currentPreview != null)
-            {
-                Destroy(currentPreview);
-            }
-
-            currentPreview = Instantiate(previewPrefabs[selectedTowerIndex]);
+            CreateTowerPreview();
         }
         else
         {
@@ -127,6 +120,7 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             ToggleTowerMenu();
         }
+
         if (towerMenuUI.activeSelf)
         {
             HandleWheelSelection();
@@ -134,7 +128,10 @@ public class TowerPlacementSystem : MonoBehaviour
 
         if (isPlacingTower && selectedTowerIndex != -1)
         {
-            PreviewTowerPlacement();
+            if (currentPreview != null)
+            {
+                PreviewTowerPlacement();
+            }
 
             if (Input.GetMouseButtonDown(0) && currentPreview != null)
             {
@@ -148,19 +145,20 @@ public class TowerPlacementSystem : MonoBehaviour
         }
     }
 
-    void HighlightTowerButton(int index)
+    void HighlightTowerImage(int index)
     {
-        for (int i = 0; i < towerButtons.Length; i++)
+        for (int i = 0; i < towerImages.Length; i++)
         {
+            towerImages[i].rectTransform.localScale = Vector3.one;
+            towerButtons[i].transform.localScale = Vector3.one;
+
             if (i == index)
             {
-                towerButtons[i].GetComponent<Image>().color = Color.grey;
-                //towerButtons[i].transform.localScale = Vector3.one * 2f;
+                towerImages[i].color = new Color(0.7f, 0f, 1f, 0.5f);
             }
             else
             {
-                towerButtons[i].GetComponent<Image>().color = Color.white;
-                towerButtons[i].transform.localScale = Vector3.one;
+                towerImages[i].color = Color.white;
             }
         }
     }
@@ -168,37 +166,38 @@ public class TowerPlacementSystem : MonoBehaviour
     void HandleWheelSelection()
     {
         Vector2 mousePosition = Input.mousePosition;
-        Vector2 center = new Vector2(Screen.width / 2, Screen.height / 2);
+        Vector2 center = towerMenuUI.transform.position;
         Vector2 direction = mousePosition - center;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+        angle -= 45;
         if (angle < 0) angle += 360;
 
-        if (angle >= 0 && angle < 90)
+        if (angle >= 45 && angle < 135)
         {
-            HighlightTowerButton(0);
+            HighlightTowerImage(0);
             if (Input.GetMouseButtonDown(0))
             {
                 SelectTower(0);
             }
         }
-        else if (angle >= 90 && angle < 180)
+        else if (angle >= 135 && angle < 225)
         {
-            HighlightTowerButton(1);
+            HighlightTowerImage(1);
             if (Input.GetMouseButtonDown(0))
             {
                 SelectTower(1);
             }
         }
-        else if (angle >= 180 && angle < 270)
+        else if (angle >= 225 && angle < 315)
         {
-            HighlightTowerButton(2);
+            HighlightTowerImage(2);
             if (Input.GetMouseButtonDown(0))
             {
                 SelectTower(2);
             }
         }
-        /*else if (angle >= 270 && angle < 360) por si acaso la cuarta torre
+        /*else if (angle >= 270 && angle < 360) // Cuarta torre
         {
             HighlightTowerButton(3);
             if (Input.GetMouseButtonDown(0))
@@ -230,8 +229,27 @@ public class TowerPlacementSystem : MonoBehaviour
         }
     }
 
+    void CreateTowerPreview()
+    {
+        if (currentPreview != null)
+        {
+            Destroy(currentPreview);
+        }
+        StartCoroutine(CreatePreviewCoroutine());
+    }
+
+    IEnumerator CreatePreviewCoroutine()
+    {
+        yield return null;
+
+        currentPreview = Instantiate(previewPrefabs[selectedTowerIndex]);
+        currentPreview.SetActive(true);
+    }
+
     void PreviewTowerPlacement()
     {
+        if (currentPreview == null) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer | enemyPathLayer))
@@ -241,19 +259,22 @@ public class TowerPlacementSystem : MonoBehaviour
             bool isValidPosition = distanceFromPlayer <= buildRange &&
                                    distanceFromPlayer >= minDistanceFromPlayer &&
                                    !IsThereATowerNearby(placementPosition, minDistanceBetweenTowers);
+
             if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
             {
                 placementPosition.y = hit.point.y;
-                float previewHeightOffset = 1.0f;
+                float previewHeightOffset = 0f;
                 placementPosition.y += previewHeightOffset;
                 currentPreview.transform.position = placementPosition;
             }
+
             float scrollInput = Input.GetAxis("Mouse ScrollWheel");
             if (scrollInput != 0f)
             {
                 currentRotation += scrollInput * rotationSpeed;
                 currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
             }
+
             SetPreviewColor(isValidPosition ? Color.green : Color.red);
             currentPreview.SetActive(true);
         }
@@ -292,7 +313,7 @@ public class TowerPlacementSystem : MonoBehaviour
                 if (Physics.Raycast(towerPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
                 {
                     towerPosition.y = hit.point.y;
-                    float towerHeightOffset = 1.0f;
+                    float towerHeightOffset = 0f;
                     towerPosition.y += towerHeightOffset;
 
                     Quaternion towerRotation = currentPreview.transform.rotation;

@@ -45,20 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefabs:
-  - {fileID: 7732674989407946683, guid: d574699184778db4589e6e7822e7a545, type: 3}
-  - {fileID: 7732674989407946683, guid: aa981382e90202d4695d27579273e65f, type: 3}
-  - {fileID: 7732674989407946683, guid: 0bcc77d330e82d34f9b19a9a22a24a31, type: 3}
-  - {fileID: 7732674989407946683, guid: 271ea3ebd148ac04185d3a5524bda3fa, type: 3}
+  - {fileID: 3579188092461989402, guid: ef3b147df838d9d4c8f78b77183ec274, type: 3}
+  - {fileID: 1373995531007632063, guid: e790b2ae5d23e2d45b326ea7880d443a, type: 3}
+  - {fileID: 8296981266097309861, guid: a106eef0056f5b04ab12753a1607d52b, type: 3}
   previewPrefabs:
-  - {fileID: 7732674989407946683, guid: 8e6eed4e925d9b443922a6e57bad3134, type: 3}
-  - {fileID: 7732674989407946683, guid: 462c44588ab70e14ca2dd8c93e18b18c, type: 3}
-  - {fileID: 7732674989407946683, guid: 5415603b1bea696489f7d874c4460938, type: 3}
-  - {fileID: 7732674989407946683, guid: a4695710e30c59e4ab8a294640a4b3bf, type: 3}
+  - {fileID: 3579188092461989402, guid: 3cbc01a3adae10249be6847cb1ae9f5c, type: 3}
+  - {fileID: 1373995531007632063, guid: 1019cc152b69fd54592d25423c2e2d48, type: 3}
+  - {fileID: 8296981266097309861, guid: 00350f3848a6bf74ba3fda9bb331f050, type: 3}
   constructionTimes:
   - 2
-  - 5
-  - 1
-  - 10
+  - 2
+  - 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -68,29 +65,26 @@ MonoBehaviour:
   towerLayer:
     serializedVersion: 2
     m_Bits: 128
-  openMenuKey: 120
-  buildRange: 6
-  minDistanceFromPlayer: 2
+  openMenuKey: 9
+  buildRange: 10
+  minDistanceFromPlayer: 5
   player: {fileID: 0}
   towerMenuUI: {fileID: 0}
   towerButtons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   rotationSpeed: 50
   minDistanceBetweenTowers: 5
   currentRotation: 0
-  towerCosts: 01000000020000000100000002000000
+  towerCosts: 0a000000140000001e000000
   centerPoint: {fileID: 0}
-  radius: 360
+  radius: 300
   towerImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   costTexts:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

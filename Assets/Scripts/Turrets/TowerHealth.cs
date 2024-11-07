@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TowerHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
-    public float maxHealth = 100f;
+    [SerializeField] public float maxHealth = 100f;
     private float currentHealth;
 
     private void Start()
@@ -28,7 +27,7 @@ public class TowerHealth : MonoBehaviour
 
     private void DestroyTower()
     {
-        Debug.Log("Tower has been destroyed!");
+        Debug.Log("Yyyy murió");
         Destroy(gameObject);
     }
 }
