@@ -253,6 +253,7 @@ MonoBehaviour:
   range: 10
   nextFireTime: 0
   target: {fileID: 0}
+  damage: 30
 --- !u!114 &6776598907061601961
 MonoBehaviour:
   m_ObjectHideFlags: 0
