@@ -6,6 +6,8 @@ using UnityEngine.Pool;
 public class BulletPooler : MonoBehaviour
 {
     [SerializeField] public GameObject bulletPrefab;
+    [SerializeField] public GameObject MortarProjectile;
+    [SerializeField] public GameObject MageSpell;
     [SerializeField] public int poolSize = 50;
     [SerializeField] private Queue<GameObject> pool = new Queue<GameObject>();
 
