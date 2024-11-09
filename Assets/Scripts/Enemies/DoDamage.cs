@@ -20,15 +20,18 @@ public class DoDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (player != null)
+        if (other.tag == "Player")
         {
-            player.TakeDamage(10);
+            if (player != null)
+            {
+                player.TakeDamage(10);
+            }
+
+            spawner.EnemyKilled();
+
+            // Destruye el objeto actual después de hacer daño
+            Destroy(gameObject);
         }
-
-        spawner.EnemyKilled();
-
-        // Destruye el objeto actual después de hacer daño
-        Destroy(gameObject);
     }
 }
 
