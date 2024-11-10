@@ -56,6 +56,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_01_LOD2
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 1396d7fe60d1fdc4b8dced07b3b8404a, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.0594574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 1396d7fe60d1fdc4b8dced07b3b8404a, type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.038595453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: 1396d7fe60d1fdc4b8dced07b3b8404a, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.02827612
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
