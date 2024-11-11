@@ -32,6 +32,7 @@ Material:
     m_Floats:
     - _Cutoff: 0.9
     - _GlossMapScale: 0
+    - _Glossiness: 0
     - _GlossyReflections: 0
     - _Mode: 1
     - _Parallax: 0.005
