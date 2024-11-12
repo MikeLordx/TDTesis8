@@ -42,7 +42,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        Debug.Log($"Spawning wave {waveIndex} from {gameObject.name}");
+        //Debug.Log($"Spawning wave {waveIndex} from {gameObject.name}");
         Wave wave = waves[waveIndex];
 
         for (int i = 0; i < wave.enemies.Length; i++)
@@ -50,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
             for (int j = 0; j < wave.enemiesCount[i]; j++)
             {
                 int spawnPointIndex = Random.Range(0, spawnPointsWithWaypoints.Length);
-                Debug.Log($"Spawning enemy {wave.enemies[i].name} at spawn point {spawnPointIndex} from {gameObject.name}");
+                //Debug.Log($"Spawning enemy {wave.enemies[i].name} at spawn point {spawnPointIndex} from {gameObject.name}");
 
                 SpawnEnemy(wave.enemies[i], spawnPointsWithWaypoints[spawnPointIndex]);
 
@@ -63,7 +63,11 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemyPrefab, SpawnPointWaypoints spawnPointWithWaypoints)
     {
-        GameObject enemy = Instantiate(enemyPrefab, spawnPointWithWaypoints.spawnPoint.position, spawnPointWithWaypoints.spawnPoint.rotation);
+        Vector3 randomSpawnPosition = new Vector3(
+            spawnPointWithWaypoints.spawnPoint.position.x + Random.Range(-5f, 5f),
+            spawnPointWithWaypoints.spawnPoint.position.y,
+            spawnPointWithWaypoints.spawnPoint.position.z);
+        GameObject enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnPointWithWaypoints.spawnPoint.rotation);
 
         EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
         if (enemyMovement != null)

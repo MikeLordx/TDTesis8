@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,20 +5,54 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> wayPoint;
+    public float playerDetectionRange = 5f;
 
-    NavMeshAgent navMeshAgent;
-
-    public int currentWaypointIndex = 0;
+    private NavMeshAgent navMeshAgent;
+    private int currentWaypointIndex = 0;
+    private Transform player;
+    private PlayerHealth playerHealth;
+    private bool chasingPlayer = false;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+            playerHealth = playerObject.GetComponent<PlayerHealth>();
+        }
+
         Walking();
     }
 
     void Update()
     {
-        Walking();
+        if (player != null && playerHealth != null && !playerHealth.isDead)
+        {
+            if (Vector3.Distance(transform.position, player.position) <= playerDetectionRange)
+            {
+                chasingPlayer = true;
+            }
+            else
+            {
+                chasingPlayer = false;
+            }
+
+            if (chasingPlayer)
+            {
+                navMeshAgent.SetDestination(player.position);
+            }
+            else
+            {
+                Walking();
+            }
+        }
+        else
+        {
+            chasingPlayer = false;
+            Walking();
+        }
     }
 
     private void Walking()
@@ -28,16 +61,15 @@ public class EnemyMovement : MonoBehaviour
         {
             return;
         }
-
         float distanceToWaypoint = Vector3.Distance(wayPoint[currentWaypointIndex].position, transform.position);
 
-        // Check if the agent is close enough to the current waypoint
         if (distanceToWaypoint <= 2f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % wayPoint.Count;
         }
-
-        // Set the destination to the current waypoint
-        navMeshAgent.SetDestination(wayPoint[currentWaypointIndex].position);
+        if (!chasingPlayer)
+        {
+            navMeshAgent.SetDestination(wayPoint[currentWaypointIndex].position);
+        }
     }
 }

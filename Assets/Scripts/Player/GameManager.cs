@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public int playerCoins = 100;
-    public TextMeshProUGUI coinText;
-    public GameState currentState;
+    [SerializeField] public static GameManager instance;
+    [SerializeField] public int playerCoins = 100;
+    [SerializeField] public TextMeshProUGUI coinText;
+    [SerializeField] public GameState currentState;
 
     private void Awake()
     {
@@ -17,16 +18,10 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-
     void Start()
     {
-        ChangeState(GameState.MainMenu);
         UpdateCoinUI();
-    }
-
-    private void Update()
-    {
-        Debug.Log(currentState.ToString());
+        Time.timeScale = 1.0f;
     }
 
     public void AddCoins(int amount)
@@ -35,9 +30,15 @@ public class GameManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    private void UpdateCoinUI()
+    void UpdateCoinUI()
     {
         coinText.text = playerCoins.ToString();
+    }
+
+
+    private void Update()
+    {
+        //Debug.Log(currentState.ToString());
     }
 
     public bool HasEnoughCoins(int towerCost)
@@ -51,22 +52,41 @@ public class GameManager : MonoBehaviour
         UpdateCoinUI();
     }
 
+    public void MoveNextScene(string nextScene)
+    {
+        SceneManager.LoadScene(nextScene);
+        ChangeState(GameState.Playing);
+    }
+
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
     public void ChangeState(GameState newState)
     {
         currentState = newState;
         switch (currentState)
         {
             case GameState.MainMenu:
-                // Handle MainMenu logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.Playing:
-                // Handle Playing logic
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.Paused:
-                // Handle Paused logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.GameOver:
-                // Handle GameOver logic
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
         }
     }
