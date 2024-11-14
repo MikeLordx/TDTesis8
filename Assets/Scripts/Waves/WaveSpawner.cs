@@ -19,14 +19,14 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        /*if (enemiesAlive > 0)
+        // Si ya no hay más olas, detener el spawner.
+        if (waveIndex >= waves.Length)
         {
-            if(totalEnemiesAlive > 0)
-            {
-                return;
-            }
-        }*/
+            countdownText.text = "Waves Completed!";
+            return;
+        }
 
+        // Comienza la cuenta atrás para la próxima ola.
         if (countdown <= 0)
         {
             StartCoroutine(SpawnWave());
@@ -35,14 +35,12 @@ public class WaveSpawner : MonoBehaviour
         }
 
         countdown -= Time.deltaTime;
-
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
         countdownText.text = string.Format("{0:00.00}", countdown);
     }
 
     IEnumerator SpawnWave()
     {
-        //Debug.Log($"Spawning wave {waveIndex} from {gameObject.name}");
         Wave wave = waves[waveIndex];
 
         for (int i = 0; i < wave.enemies.Length; i++)
@@ -50,7 +48,6 @@ public class WaveSpawner : MonoBehaviour
             for (int j = 0; j < wave.enemiesCount[i]; j++)
             {
                 int spawnPointIndex = Random.Range(0, spawnPointsWithWaypoints.Length);
-                //Debug.Log($"Spawning enemy {wave.enemies[i].name} at spawn point {spawnPointIndex} from {gameObject.name}");
 
                 SpawnEnemy(wave.enemies[i], spawnPointsWithWaypoints[spawnPointIndex]);
 
@@ -58,8 +55,16 @@ public class WaveSpawner : MonoBehaviour
             }
         }
 
+        // Incrementa el índice de la ola.
         waveIndex++;
+
+        // Si se han completado todas las olas, muestra un mensaje.
+        if (waveIndex >= waves.Length)
+        {
+            Debug.Log("All waves completed!");
+        }
     }
+
 
     void SpawnEnemy(GameObject enemyPrefab, SpawnPointWaypoints spawnPointWithWaypoints)
     {
