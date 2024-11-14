@@ -256,15 +256,15 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             Vector3 placementPosition = hit.point;
             float distanceFromPlayer = Vector3.Distance(player.position, placementPosition);
+            bool isPathArea = Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, Mathf.Infinity, enemyPathLayer);
             bool isValidPosition = distanceFromPlayer <= buildRange &&
                                    distanceFromPlayer >= minDistanceFromPlayer &&
+                                   !isPathArea &&
                                    !IsThereATowerNearby(placementPosition, minDistanceBetweenTowers);
 
             if (Physics.Raycast(placementPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
             {
                 placementPosition.y = hit.point.y;
-                float previewHeightOffset = 0f;
-                placementPosition.y += previewHeightOffset;
                 currentPreview.transform.position = placementPosition;
             }
 
