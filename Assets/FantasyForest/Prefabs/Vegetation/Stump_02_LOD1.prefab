@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stump_02_LOD1
       objectReference: {fileID: 0}
+    - target: {fileID: 4742473837712756890, guid: b03071832276615419c9dd37546a0dd3, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.029149985
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
