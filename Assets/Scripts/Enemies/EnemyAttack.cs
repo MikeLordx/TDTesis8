@@ -10,11 +10,13 @@ public class EnemyAttack : MonoBehaviour
 
     private float attackCooldown;
     private Transform target;
+    private Animator animator;
 
     private void Start()
     {
         attackCooldown = 0f;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -34,7 +36,11 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator PerformAttack()
     {
+        animator.SetBool("isWalking", false);
+        animator.SetTrigger("Attack");
+
         yield return new WaitForSeconds(attackDelay);
+
         if (target != null)
         {
             PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
@@ -43,5 +49,7 @@ public class EnemyAttack : MonoBehaviour
                 playerHealth.TakeDamage(damage);
             }
         }
+        animator.SetBool("isWalking", true);
     }
+
 }

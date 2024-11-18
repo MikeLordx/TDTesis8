@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public float playerDetectionRange = 5f;
 
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
     private int currentWaypointIndex = 0;
     private Transform player;
     private PlayerHealth playerHealth;
@@ -16,13 +17,15 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             player = playerObject.transform;
             playerHealth = playerObject.GetComponent<PlayerHealth>();
         }
-
+        animator.SetBool("isWalking", true);
         Walking();
     }
 
@@ -53,6 +56,16 @@ public class EnemyMovement : MonoBehaviour
             chasingPlayer = false;
             Walking();
         }
+        if (navMeshAgent.velocity.magnitude > 0.1f)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+        float speed = navMeshAgent.velocity.magnitude;
+        animator.SetFloat("Speed", speed);
     }
 
     private void Walking()
@@ -61,6 +74,7 @@ public class EnemyMovement : MonoBehaviour
         {
             return;
         }
+
         float distanceToWaypoint = Vector3.Distance(wayPoint[currentWaypointIndex].position, transform.position);
 
         if (distanceToWaypoint <= 2f)

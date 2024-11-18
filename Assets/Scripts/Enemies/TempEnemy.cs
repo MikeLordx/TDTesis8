@@ -1,13 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TempEnemy : MonoBehaviour
 {
     [SerializeField] public float health = 100f;
     [SerializeField] public int rewardAmount = 10;
-    WaveSpawner waveSpawner;
     [SerializeField] public GameObject coinPrefab;
+
+    private NavMeshAgent navMeshAgent;
+    private Animator animator;
+
+    void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>(); // Inicializa el NavMeshAgent
+        animator = GetComponent<Animator>(); // Inicializa el Animator
+    }
 
     public void TakeDamage(float amount)
     {
@@ -21,10 +28,12 @@ public class TempEnemy : MonoBehaviour
 
     void Die()
     {
+        navMeshAgent.isStopped = true;
+        animator.SetTrigger("Die");
+
         DropCoins();
-        //waveSpawner.EnemyKilled();
         GameManager.instance.AddCoins(rewardAmount);
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     void DropCoins()
