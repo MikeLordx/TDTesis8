@@ -6,6 +6,8 @@ public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> wayPoint;
     public float playerDetectionRange = 5f;
+    public float startSpacing = 2f;  // Espaciado inicial entre enemigos
+    public float waypointAreaRadius = 3f; // Radio en el que los enemigos se moverán alrededor del waypoint
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -13,11 +15,19 @@ public class EnemyMovement : MonoBehaviour
     private Transform player;
     private PlayerHealth playerHealth;
     private bool chasingPlayer = false;
+    private Vector3 targetPosition;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        // Colocar al enemigo en un área más organizada si es necesario
+        Vector3 spawnPosition = wayPoint[currentWaypointIndex].position + new Vector3(Random.Range(-startSpacing, startSpacing), 0, Random.Range(-startSpacing, startSpacing));
+        transform.position = spawnPosition;
+
+        // Inicializa el destino alrededor del waypoint actual
+        SetNewTargetPosition();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -26,7 +36,6 @@ public class EnemyMovement : MonoBehaviour
             playerHealth = playerObject.GetComponent<PlayerHealth>();
         }
         animator.SetBool("isWalking", true);
-        Walking();
     }
 
     void Update()
@@ -48,14 +57,25 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                Walking();
+                // Continúa moviéndose hacia el waypoint sin detenerse
+                if (Vector3.Distance(transform.position, targetPosition) <= 1f)
+                {
+                    SetNewTargetPosition(); // Cambiar a una nueva posición aleatoria cercana
+                }
+                navMeshAgent.SetDestination(targetPosition);
             }
         }
         else
         {
             chasingPlayer = false;
-            Walking();
+            // Mantener el movimiento hacia el waypoint sin detenerse
+            if (Vector3.Distance(transform.position, targetPosition) <= 1f)
+            {
+                SetNewTargetPosition(); // Cambiar a una nueva posición aleatoria cercana
+            }
+            navMeshAgent.SetDestination(targetPosition);
         }
+
         if (navMeshAgent.velocity.magnitude > 0.1f)
         {
             animator.SetBool("isWalking", true);
@@ -68,22 +88,18 @@ public class EnemyMovement : MonoBehaviour
         animator.SetFloat("Speed", speed);
     }
 
-    private void Walking()
+    private void SetNewTargetPosition()
     {
         if (wayPoint == null || wayPoint.Count == 0)
         {
             return;
         }
 
-        float distanceToWaypoint = Vector3.Distance(wayPoint[currentWaypointIndex].position, transform.position);
+        // Calcular un punto aleatorio dentro del área alrededor del waypoint
+        Vector3 randomOffset = new Vector3(Random.Range(-waypointAreaRadius, waypointAreaRadius), 0, Random.Range(-waypointAreaRadius, waypointAreaRadius));
+        targetPosition = wayPoint[currentWaypointIndex].position + randomOffset;
 
-        if (distanceToWaypoint <= 2f)
-        {
-            currentWaypointIndex = (currentWaypointIndex + 1) % wayPoint.Count;
-        }
-        if (!chasingPlayer)
-        {
-            navMeshAgent.SetDestination(wayPoint[currentWaypointIndex].position);
-        }
+        // Cambiar al siguiente waypoint cuando el enemigo llega a la zona
+        currentWaypointIndex = (currentWaypointIndex + 1) % wayPoint.Count;
     }
 }
