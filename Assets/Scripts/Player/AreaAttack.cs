@@ -13,13 +13,13 @@ public class AreaAttack : MonoBehaviour
     public int damage = 50;
     public LayerMask groundLayer;
 
-    // Nuevo: Coste de maná de la habilidad
     public float manaCost = 50f;
+    private Animator animator; // Referencia al Animator
 
     // UI elements
-    public Image cooldownImage;            // Imagen de la UI para mostrar el cooldown
-    public TextMeshProUGUI cooldownText;   // Texto TMP para mostrar el tiempo restante del cooldown
-    public Image lowManaImage;             // Imagen que se muestra si el maná es insuficiente
+    public Image cooldownImage;
+    public TextMeshProUGUI cooldownText;
+    public Image lowManaImage;
 
     private void Start()
     {
@@ -39,6 +39,8 @@ public class AreaAttack : MonoBehaviour
         {
             lowManaImage.gameObject.SetActive(false);
         }
+
+        animator = GetComponent<Animator>(); // Obtén el Animator del personaje
     }
 
     void Update()
@@ -58,16 +60,31 @@ public class AreaAttack : MonoBehaviour
             // Si hay suficiente maná y el cooldown ha terminado, lanza el ataque
             if (Time.time > nextFireTime)
             {
-                StartCoroutine(CastAreaSpellFromCenter());
                 nextFireTime = Time.time + cooldownTime;
+
+                // Activa la animación
+                if (animator != null)
+                {
+                    animator.SetBool("IsCasting", true); // Activa la animación de ataque
+                }
+
+                StartCoroutine(CastAreaSpellFromCenter());
 
                 if (cooldownImage != null && cooldownText != null)
                 {
                     cooldownImage.gameObject.SetActive(true);
                     StartCoroutine(CooldownRoutine());
                 }
+
+                StartCoroutine(ResetCasting());
             }
         }
+    }
+
+    IEnumerator ResetCasting()
+    {
+        yield return new WaitForSeconds(0.5f); // Ajusta el tiempo según la duración de la animación
+        animator.SetBool("IsCasting", false); // Desactiva la animación después de completarse
     }
 
     IEnumerator CastAreaSpellFromCenter()
@@ -78,11 +95,12 @@ public class AreaAttack : MonoBehaviour
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
         RaycastHit hit;
+        yield return new WaitForSeconds(0.5f); // Sincroniza con la animación
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
             GameObject vfx = Instantiate(areaEffectPrefab, hit.point, Quaternion.identity);
-            mana.DecreaseMana(manaCost); // Resta el coste de maná especificado
+            mana.DecreaseMana(manaCost);
 
             ApplyAreaDamage(hit.point);
             yield return new WaitForSeconds(4.3f);
@@ -109,7 +127,7 @@ public class AreaAttack : MonoBehaviour
 
         if (cooldownText != null)
         {
-            cooldownText.gameObject.SetActive(true); // Activa el texto al inicio del cooldown
+            cooldownText.gameObject.SetActive(true);
         }
 
         while (cooldownTimer > 0)
@@ -120,7 +138,7 @@ public class AreaAttack : MonoBehaviour
                 cooldownImage.fillAmount = cooldownTimer / cooldownTime;
 
             if (cooldownText != null)
-                cooldownText.text = Mathf.Ceil(cooldownTimer).ToString(); // Actualiza el texto con el tiempo restante
+                cooldownText.text = Mathf.Ceil(cooldownTimer).ToString();
 
             yield return null;
         }
@@ -130,11 +148,10 @@ public class AreaAttack : MonoBehaviour
 
         if (cooldownText != null)
         {
-            cooldownText.text = "";                 // Limpia el texto al finalizar
-            cooldownText.gameObject.SetActive(false); // Desactiva el texto cuando termina el cooldown
+            cooldownText.text = "";
+            cooldownText.gameObject.SetActive(false);
         }
     }
-
 
     IEnumerator BlinkLowManaImage()
     {

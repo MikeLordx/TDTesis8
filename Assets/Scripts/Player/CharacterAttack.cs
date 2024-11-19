@@ -14,6 +14,7 @@ public class CharacterAttack : MonoBehaviour
     // Nuevo: Coste de maná para el ataque
     public float manaCost = 15f;
 
+    private Animator animator;
     // UI elements
     public Image cooldownImage;          // Imagen de la UI para mostrar el cooldown
     public TextMeshProUGUI cooldownText; // Texto TMP para mostrar el tiempo restante del cooldown
@@ -41,7 +42,7 @@ public class CharacterAttack : MonoBehaviour
         {
             lowManaImage.gameObject.SetActive(false);
         }
-
+        animator = GetComponent<Animator>();
         pauseIsActive = false; 
     }
 
@@ -49,19 +50,18 @@ public class CharacterAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // Verifica si hay suficiente maná para el coste de la habilidad
             if (mana.currentMana < manaCost)
             {
                 if (lowManaImage != null)
                 {
                     StartCoroutine(BlinkLowManaImage());
                 }
-                return; // No se puede lanzar el ataque si el maná es insuficiente
+                return;
             }
 
-            // Si hay suficiente maná y el cooldown ha terminado, lanza el ataque
             if (Time.time > nextFireTime)
             {
+                animator.SetBool("IsCasting", true);
                 LaunchProjectile();
                 nextFireTime = Time.time + cooldownTime;
 
@@ -70,23 +70,14 @@ public class CharacterAttack : MonoBehaviour
                     cooldownImage.gameObject.SetActive(true);
                     StartCoroutine(CooldownRoutine());
                 }
+                StartCoroutine(ResetCasting());
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameManager.instance.currentState == GameState.Paused)
-            {
-                pause.SetActive(false);
-                GameManager.instance.ChangeState(GameState.Playing);
-            }
-            else
-            {
-                pause.SetActive(true);
-                GameManager.instance.ChangeState(GameState.Paused);
-            }
-        }
-
+    }
+    IEnumerator ResetCasting()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("IsCasting", false);
     }
 
     void LaunchProjectile()

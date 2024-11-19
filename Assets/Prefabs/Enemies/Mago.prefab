@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 891643246262552222}
   - component: {fileID: 3804892235877523680}
   - component: {fileID: 5387027266614508352}
+  - component: {fileID: 3769484430919402720}
   - component: {fileID: 1901014762933523547}
   - component: {fileID: 2431214491630398726}
   m_Layer: 0
@@ -231,7 +232,7 @@ MonoBehaviour:
   health: 10
   rewardAmount: 10
   coinPrefab: {fileID: 4210353053260538614, guid: 1cbc24af77bd1894890c1fbdb9f17bc2, type: 3}
---- !u!114 &1901014762933523547
+--- !u!114 &3769484430919402720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,6 +240,22 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7954078855402617965}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377c3a086c77cd54d849f2b011355160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  timeBetweenAttacks: 2
+  attackRange: 1.5
+  attackDelay: 0.5
+--- !u!114 &1901014762933523547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954078855402617965}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0d009a008d97d34ca40f1648d895835, type: 3}
   m_Name: 

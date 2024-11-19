@@ -9,13 +9,21 @@ public class MeleeAttack : MonoBehaviour
     public float attackCooldown = 1.0f;
 
     private float lastAttackTime = 0f;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if (Input.GetButtonDown("Fire1") && Time.time >= lastAttackTime + attackCooldown)
         {
+            animator.SetBool("IsAttacking", true);
             PerformMeleeAttack();
             lastAttackTime = Time.time;
+            StartCoroutine(ResetAttack());
         }
     }
 
@@ -34,6 +42,12 @@ public class MeleeAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator ResetAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("IsAttacking", false);
     }
 
     private void OnDrawGizmosSelected()
