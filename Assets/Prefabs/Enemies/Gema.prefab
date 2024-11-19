@@ -118,6 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 50
+  launchForce: 15
+  floatHeight: 0.5
+  floatSpeed: 2
+  rotationSpeed: 100
+  stopTime: 2
 --- !u!1001 &5783210176055823151
 PrefabInstance:
   m_ObjectHideFlags: 0

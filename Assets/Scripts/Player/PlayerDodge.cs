@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -13,6 +12,7 @@ public class PlayerDodge : MonoBehaviour
     private Rigidbody rb;
     private bool isDodging = false;
     private float lastDodgeTime = -2f;
+    private Vector3 originalVelocity;
 
     private void Start()
     {
@@ -36,14 +36,17 @@ public class PlayerDodge : MonoBehaviour
     IEnumerator PerformDodge(Vector3 dodgeDirection)
     {
         isDodging = true;
-        float startTime = Time.time;
+        originalVelocity = rb.velocity;
+        rb.isKinematic = false;
 
+        float startTime = Time.time;
         while (Time.time < startTime + dodgeDuration)
         {
             rb.velocity = new Vector3(dodgeDirection.x * (dodgeDistance / dodgeDuration), rb.velocity.y, dodgeDirection.z * (dodgeDistance / dodgeDuration));
             yield return null;
         }
 
+        rb.velocity = originalVelocity;
         isDodging = false;
     }
 }

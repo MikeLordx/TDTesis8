@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 12f;
+    [SerializeField] private float speed = 30f;
     private Rigidbody rb;
     private Animator animator;
 

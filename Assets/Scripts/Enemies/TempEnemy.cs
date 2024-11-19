@@ -32,7 +32,7 @@ public class TempEnemy : MonoBehaviour
         animator.SetTrigger("Die");
 
         DropCoins();
-        GameManager.instance.AddCoins(rewardAmount);
+        //GameManager.instance.AddCoins(rewardAmount);
         Destroy(gameObject, 2f);
     }
 
