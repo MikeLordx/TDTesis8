@@ -73,6 +73,20 @@ public class CharacterAttack : MonoBehaviour
                 StartCoroutine(ResetCasting());
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.instance.currentState == GameState.Paused)
+            {
+                pause.SetActive(false);
+                GameManager.instance.ChangeState(GameState.Playing);
+            }
+            else
+            {
+                pause.SetActive(true);
+                GameManager.instance.ChangeState(GameState.Paused);
+            }
+        }
     }
     IEnumerator ResetCasting()
     {
