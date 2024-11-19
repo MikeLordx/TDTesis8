@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   rewardAmount: 10
-  coinPrefab: {fileID: 5116205036510230594, guid: 2096b22122a204049aa4e7a5eef2ad94, type: 3}
+  coinPrefab: {fileID: 4210353053260538614, guid: 1cbc24af77bd1894890c1fbdb9f17bc2, type: 3}
 --- !u!114 &1901014762933523547
 MonoBehaviour:
   m_ObjectHideFlags: 0

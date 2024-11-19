@@ -20,28 +20,33 @@ public class EnemyMovementTower : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        InitializeWaypoints();
+
         animator.SetBool("isWalking", true);
         Walking();
     }
 
     void Update()
     {
+        bool hasTarget = false;
         targetTower = FindClosestTower();
-
         if (targetTower != null && Vector3.Distance(transform.position, targetTower.position) <= towerDetectionRange)
         {
             navMeshAgent.SetDestination(targetTower.position);
+            hasTarget = true;
         }
-        else if (player != null && Vector3.Distance(transform.position, player.position) <= playerDetectionRange)
+        if (!hasTarget && player != null && Vector3.Distance(transform.position, player.position) <= playerDetectionRange)
         {
             navMeshAgent.SetDestination(player.position);
+            hasTarget = true;
         }
-        else
+        if (!hasTarget)
         {
             Walking();
         }
         animator.SetBool("isWalking", navMeshAgent.velocity.magnitude > 0.1f);
     }
+
 
     private Transform FindClosestTower()
     {
@@ -61,13 +66,33 @@ public class EnemyMovementTower : MonoBehaviour
 
         return closestTower;
     }
+    private void InitializeWaypoints()
+    {
+        if (wayPoint == null || wayPoint.Count == 0)
+        {
+            Debug.LogWarning("No hay waypoints asignados. Buscando en la escena...");
+            GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("Waypoint");
+            foreach (GameObject obj in waypointObjects)
+            {
+                wayPoint.Add(obj.transform);
+            }
+            wayPoint.Sort((a, b) => a.name.CompareTo(b.name));
+        }
+    }
 
     private void Walking()
     {
         if (wayPoint == null || wayPoint.Count == 0)
         {
+            Debug.LogWarning("La lista de waypoints está vacía o no asignada.");
             return;
         }
+        if (wayPoint[currentWaypointIndex] == null)
+        {
+            Debug.LogWarning($"El waypoint en el índice {currentWaypointIndex} no está asignado.");
+            return;
+        }
+
         float distanceToWaypoint = Vector3.Distance(wayPoint[currentWaypointIndex].position, transform.position);
 
         if (distanceToWaypoint <= 2f)
@@ -79,4 +104,5 @@ public class EnemyMovementTower : MonoBehaviour
             navMeshAgent.SetDestination(wayPoint[currentWaypointIndex].position);
         }
     }
+
 }
