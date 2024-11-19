@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   rewardAmount: 10
-  coinPrefab: {fileID: 5116205036510230594, guid: 2096b22122a204049aa4e7a5eef2ad94, type: 3}
+  coinPrefab: {fileID: 4210353053260538614, guid: 1cbc24af77bd1894890c1fbdb9f17bc2, type: 3}
 --- !u!114 &6868054525027596717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +303,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d77b6029d635492bbbacdb94aaba2c55, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285209290506305774, guid: 3d2bee1c074040e08f51084c46c591cb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

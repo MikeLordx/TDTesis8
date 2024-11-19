@@ -12,8 +12,8 @@ public class TempEnemy : MonoBehaviour
 
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>(); // Inicializa el NavMeshAgent
-        animator = GetComponent<Animator>(); // Inicializa el Animator
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(float amount)

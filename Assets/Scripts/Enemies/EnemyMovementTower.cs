@@ -9,14 +9,18 @@ public class EnemyMovementTower : MonoBehaviour
     public float towerDetectionRange = 1.5f;
 
     private NavMeshAgent navMeshAgent;
+    private Animator animator;
     private int currentWaypointIndex = 0;
     private Transform player;
-    private Transform targetTower; 
+    private Transform targetTower;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        animator.SetBool("isWalking", true);
         Walking();
     }
 
@@ -36,6 +40,7 @@ public class EnemyMovementTower : MonoBehaviour
         {
             Walking();
         }
+        animator.SetBool("isWalking", navMeshAgent.velocity.magnitude > 0.1f);
     }
 
     private Transform FindClosestTower()

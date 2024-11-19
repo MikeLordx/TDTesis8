@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class TowerAttackEnemy : MonoBehaviour
@@ -11,15 +11,18 @@ public class TowerAttackEnemy : MonoBehaviour
 
     private float attackCooldown;
     private Transform target;
+    private Animator animator;
 
     private void Start()
     {
         attackCooldown = 0f;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         attackCooldown -= Time.deltaTime;
+
         Transform targetTower = FindClosestTower();
         if (targetTower != null && Vector3.Distance(transform.position, targetTower.position) <= attackRange)
         {
@@ -66,7 +69,11 @@ public class TowerAttackEnemy : MonoBehaviour
 
     private IEnumerator PerformAttack(Transform target)
     {
+        animator.SetBool("isWalking", false);
+        animator.SetTrigger("Attack");
+
         yield return new WaitForSeconds(attackDelay);
+
         if (target != null)
         {
             if (target.CompareTag("Tower"))
@@ -86,5 +93,7 @@ public class TowerAttackEnemy : MonoBehaviour
                 }
             }
         }
+
+        animator.SetBool("isWalking", true);
     }
 }

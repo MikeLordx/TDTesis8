@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3804892235877523680}
   - component: {fileID: 5387027266614508352}
   - component: {fileID: 947687040163574915}
+  - component: {fileID: 3260914640341841315}
   m_Layer: 0
   m_Name: OrcosLuchadores
   m_TagString: Enemy
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPoint: []
-  currentWaypointIndex: 0
+  playerDetectionRange: 5
 --- !u!114 &3804892235877523680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   rewardAmount: 10
-  coinPrefab: {fileID: 5116205036510230594, guid: 2096b22122a204049aa4e7a5eef2ad94, type: 3}
+  coinPrefab: {fileID: 4210353053260538614, guid: 1cbc24af77bd1894890c1fbdb9f17bc2, type: 3}
 --- !u!114 &947687040163574915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +223,27 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   attackRange: 1.5
   attackDelay: 0.5
+--- !u!95 &3260914640341841315
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954078855402617965}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 48b54176159440ea9a9adf323fc5b2b6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3a071ffe067e4ac2b79f4de994579d9d, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4587533535509242308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278,7 +300,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8511647367367272476, guid: 35edb2f37426447783adbad4b3c99a8d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
