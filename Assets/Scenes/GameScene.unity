@@ -442,8 +442,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
+  m_sharedMaterial: {fileID: -3236572554081058069, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12189,8 +12189,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
+  m_sharedMaterial: {fileID: -3236572554081058069, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -31090,8 +31090,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
+  m_sharedMaterial: {fileID: -3236572554081058069, guid: 04d70be257d24694c93b437eba2c2032, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33468,10 +33468,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -14.865
       objectReference: {fileID: 0}
+    - target: {fileID: -6773555587134760573, guid: b94e8070e4ed70b45b0afd1084496a8d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46a40bfcd1b3dc048b25e5fa533971b9, type: 2}
     - target: {fileID: 919132149155446097, guid: b94e8070e4ed70b45b0afd1084496a8d, type: 3}
       propertyPath: m_Name
       value: SwordBasic_B
       objectReference: {fileID: 0}
+    - target: {fileID: 7171379116679753784, guid: b94e8070e4ed70b45b0afd1084496a8d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 068ad9b1fe983f342917dc3e9d080d0f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
