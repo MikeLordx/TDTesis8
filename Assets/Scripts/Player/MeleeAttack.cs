@@ -18,6 +18,8 @@ public class MeleeAttack : MonoBehaviour
 
     private void Update()
     {
+        if (TowerPlacementSystem.IsMenuActiveOrPlacingTower) return;
+
         if (Input.GetButtonDown("Fire1") && Time.time >= lastAttackTime + attackCooldown)
         {
             animator.SetBool("IsAttacking", true);

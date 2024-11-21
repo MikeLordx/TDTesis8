@@ -23,13 +23,14 @@ public class TowerPlacementSystem : MonoBehaviour
     [SerializeField] public float rotationSpeed = 10f;
     [SerializeField] public float minDistanceBetweenTowers = 3f;
     public float currentRotation = 0f;
-
+    [SerializeField] private GameObject[] otherUIElements;
     private GameObject currentPreview;
     private int selectedTowerIndex = -1;
     private bool isPlacingTower = false;
     [SerializeField] private int[] towerCosts;
     public Transform centerPoint;
     public float radius = 250f;
+    public static bool IsMenuActiveOrPlacingTower = false;
 
     #endregion
 
@@ -41,9 +42,9 @@ public class TowerPlacementSystem : MonoBehaviour
         InitializeTowerMenu();
         if (towerButtons.Length >= 3)
         {
-            towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(1f, 280f);
-            towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-300f, -230f);
-            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(300f, -230f);
+            towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(-5f, 221f);
+            towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-140f, -48f);
+            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(140f, -48f);
         }
     }
 
@@ -79,18 +80,37 @@ public class TowerPlacementSystem : MonoBehaviour
         if (!isActive)
         {
             isPlacingTower = false;
+            IsMenuActiveOrPlacingTower = true;
             if (currentPreview != null)
             {
                 Destroy(currentPreview);
                 currentPreview = null;
             }
+            foreach (var ui in otherUIElements)
+            {
+                if (ui != null)
+                {
+                    ui.SetActive(false);
+                }
+            }
+
             GameManager.instance.ChangeState(GameState.Paused);
         }
         else
         {
+            IsMenuActiveOrPlacingTower = false;
+            foreach (var ui in otherUIElements)
+            {
+                if (ui != null)
+                {
+                    ui.SetActive(true);
+                }
+            }
+
             GameManager.instance.ChangeState(GameState.Playing);
         }
     }
+
 
     void SelectTower(int index)
     {
@@ -106,6 +126,15 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             Debug.Log("No tienes dinero eres pobre");
         }
+        towerMenuUI.SetActive(false);
+        foreach (var ui in otherUIElements)
+        {
+            if (ui != null)
+            {
+                ui.SetActive(true);
+            }
+        }
+
     }
 
 
@@ -268,12 +297,12 @@ public class TowerPlacementSystem : MonoBehaviour
                 currentPreview.transform.position = placementPosition;
             }
 
-            float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+            /*float scrollInput = Input.GetAxis("Mouse ScrollWheel");
             if (scrollInput != 0f)
             {
                 currentRotation += scrollInput * rotationSpeed;
                 currentPreview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
-            }
+            }*/
 
             SetPreviewColor(isValidPosition ? Color.green : Color.red);
             currentPreview.SetActive(true);
@@ -326,6 +355,7 @@ public class TowerPlacementSystem : MonoBehaviour
                     currentPreview = null;
                     selectedTowerIndex = -1;
                     isPlacingTower = false;
+                    IsMenuActiveOrPlacingTower = false; // Ya no estamos colocando torre
                 }
             }
             else
@@ -334,6 +364,7 @@ public class TowerPlacementSystem : MonoBehaviour
             }
         }
     }
+
     IEnumerator BuildTowerWithDelay(int towerIndex, Vector3 position, Quaternion rotation)
     {
         float constructionTime = constructionTimes[towerIndex];

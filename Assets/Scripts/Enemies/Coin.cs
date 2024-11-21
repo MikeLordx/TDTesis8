@@ -11,12 +11,20 @@ public class Coin : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float stopTime = 1f;
 
+    [SerializeField] private float lifeTime = 10f;
+    [SerializeField][Range(0f, 1f)] private float spawnProbability = 0.5f;
+
     private Rigidbody rb;
     private bool isFloating = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if (Random.value > spawnProbability)
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     void Start()
@@ -25,6 +33,7 @@ public class Coin : MonoBehaviour
         randomDirection.y = Mathf.Abs(randomDirection.y);
         rb.AddForce(randomDirection * launchForce, ForceMode.Impulse);
         StartCoroutine(StopAndFloat());
+        StartCoroutine(DestroyAfterLifetime());
     }
 
     void Update()
@@ -44,6 +53,12 @@ public class Coin : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.isKinematic = true;
         isFloating = true;
+    }
+
+    IEnumerator DestroyAfterLifetime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)

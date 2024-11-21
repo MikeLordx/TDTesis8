@@ -139,7 +139,7 @@ MonoBehaviour:
   range: 20
   nextFireTime: 0
   target: {fileID: 0}
-  damage: 30
+  damage: 35
 --- !u!114 &6130224635069130786
 MonoBehaviour:
   m_ObjectHideFlags: 0

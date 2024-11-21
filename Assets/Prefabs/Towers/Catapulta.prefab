@@ -210,11 +210,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 3124863515206372292, guid: 937b6db8fadfeb249aaecd08b2423678, type: 3}
   firePoint: {fileID: 1577036610771950093}
-  fireRate: 1.5
+  fireRate: 3
   range: 20
   nextFireTime: 0
   target: {fileID: 0}
-  damage: 30
+  damage: 120
 --- !u!114 &916253388969589299
 MonoBehaviour:
   m_ObjectHideFlags: 0

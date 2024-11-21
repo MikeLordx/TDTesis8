@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2681a3cfe34184548b8da01fdc4c5796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 500
   rewardAmount: 10
   coinPrefab: {fileID: 4210353053260538614, guid: 1cbc24af77bd1894890c1fbdb9f17bc2, type: 3}
 --- !u!114 &2962251050461996755
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377c3a086c77cd54d849f2b011355160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 40
   timeBetweenAttacks: 2
   attackRange: 1.5
   attackDelay: 0.5

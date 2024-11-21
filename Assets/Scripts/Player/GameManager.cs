@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public static GameManager instance;
     [SerializeField] public int playerCoins = 100;
-    [SerializeField] public TextMeshProUGUI coinText;
+
+    [SerializeField] public TextMeshProUGUI coinText1;
+    [SerializeField] public TextMeshProUGUI coinText2;
+
     [SerializeField] public GameState currentState;
 
     private void Awake()
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
     void Start()
     {
         UpdateCoinUI();
@@ -30,15 +34,10 @@ public class GameManager : MonoBehaviour
         UpdateCoinUI();
     }
 
-    void UpdateCoinUI()
+    public void SpendCoins(int amount)
     {
-        coinText.text = playerCoins.ToString();
-    }
-
-
-    private void Update()
-    {
-        //Debug.Log(currentState.ToString());
+        playerCoins -= amount;
+        UpdateCoinUI();
     }
 
     public bool HasEnoughCoins(int towerCost)
@@ -46,10 +45,13 @@ public class GameManager : MonoBehaviour
         return playerCoins >= towerCost;
     }
 
-    public void SpendCoins(int amount)
+    void UpdateCoinUI()
     {
-        playerCoins -= amount;
-        UpdateCoinUI();
+        if (coinText1 != null)
+            coinText1.text = playerCoins.ToString();
+
+        if (coinText2 != null)
+            coinText2.text = playerCoins.ToString();
     }
 
     public void MoveNextScene(string nextScene)
@@ -60,11 +62,11 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
     }
 
     public void ChangeState(GameState newState)
