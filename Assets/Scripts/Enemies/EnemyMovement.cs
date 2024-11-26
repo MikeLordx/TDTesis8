@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
     public List<Transform> wayPoint;
     public float playerDetectionRange = 5f;
     public float startSpacing = 2f;  // Espaciado inicial entre enemigos
-    public float waypointAreaRadius = 3f; // Radio en el que los enemigos se moverán alrededor del waypoint
+    public float waypointAreaRadius = 1f; // Radio en el que los enemigos se moverán alrededor del waypoint
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
         animator.SetBool("isWalking", true);
     }
 
-    void Update()
+    private void Update()
     {
         if (player != null && playerHealth != null && !playerHealth.isDead)
         {
@@ -57,25 +57,47 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                // Continúa moviéndose hacia el waypoint sin detenerse
-                if (Vector3.Distance(transform.position, targetPosition) <= 1f)
-                {
-                    SetNewTargetPosition(); // Cambiar a una nueva posición aleatoria cercana
-                }
-                navMeshAgent.SetDestination(targetPosition);
+                HandleWaypointMovement();
             }
         }
         else
         {
             chasingPlayer = false;
-            // Mantener el movimiento hacia el waypoint sin detenerse
-            if (Vector3.Distance(transform.position, targetPosition) <= 1f)
-            {
-                SetNewTargetPosition(); // Cambiar a una nueva posición aleatoria cercana
-            }
-            navMeshAgent.SetDestination(targetPosition);
+            HandleWaypointMovement();
         }
 
+        UpdateAnimator();
+    }
+
+    private void HandleWaypointMovement()
+    {
+        // Moverse hacia el waypoint objetivo
+        if (Vector3.Distance(transform.position, targetPosition) <= 1f)
+        {
+            AdvanceToNextWaypoint();
+        }
+        navMeshAgent.SetDestination(targetPosition);
+    }
+
+    private void AdvanceToNextWaypoint()
+    {
+        // Asegúrate de avanzar al siguiente waypoint solo si hay waypoints definidos
+        if (wayPoint == null || wayPoint.Count == 0) return;
+
+        // Cambiar al siguiente waypoint
+        currentWaypointIndex = (currentWaypointIndex + 1) % wayPoint.Count;
+
+        // Calcular un nuevo objetivo alrededor del waypoint
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-waypointAreaRadius, waypointAreaRadius),
+            0,
+            Random.Range(-waypointAreaRadius, waypointAreaRadius)
+        );
+        targetPosition = wayPoint[currentWaypointIndex].position + randomOffset;
+    }
+
+    private void UpdateAnimator()
+    {
         if (navMeshAgent.velocity.magnitude > 0.1f)
         {
             animator.SetBool("isWalking", true);
@@ -84,22 +106,23 @@ public class EnemyMovement : MonoBehaviour
         {
             animator.SetBool("isWalking", false);
         }
+
         float speed = navMeshAgent.velocity.magnitude;
         animator.SetFloat("Speed", speed);
     }
 
     private void SetNewTargetPosition()
     {
-        if (wayPoint == null || wayPoint.Count == 0)
-        {
-            return;
-        }
+        if (wayPoint == null || wayPoint.Count == 0) return;
 
-        // Calcular un punto aleatorio dentro del área alrededor del waypoint
-        Vector3 randomOffset = new Vector3(Random.Range(-waypointAreaRadius, waypointAreaRadius), 0, Random.Range(-waypointAreaRadius, waypointAreaRadius));
+        // Calcular un punto aleatorio dentro del área alrededor del waypoint actual
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-waypointAreaRadius, waypointAreaRadius),
+            0,
+            Random.Range(-waypointAreaRadius, waypointAreaRadius)
+        );
         targetPosition = wayPoint[currentWaypointIndex].position + randomOffset;
-
-        // Cambiar al siguiente waypoint cuando el enemigo llega a la zona
-        currentWaypointIndex = (currentWaypointIndex + 1) % wayPoint.Count;
     }
+
 }
+
