@@ -28,13 +28,22 @@ public class Player : MonoBehaviour
         }
 
         // Ensure this object persists across scenes if necessary
-        DontDestroyOnLoad(gameObject);         // Optional: if you want the player to persist across scenes
     }
 
     void Start()
     {
         currentHealth = maxHealth;            // Set the initial health to max health at the start
         UpdateHealthText();                   // Update the health display
+
+        //gameOverUI = GameObject.FindGameObjectWithTag("DeadUI");
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(1000);
+        }
     }
 
     // Call this function whenever the player's health changes (e.g., when taking damage)

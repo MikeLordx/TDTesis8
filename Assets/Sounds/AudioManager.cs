@@ -18,8 +18,6 @@ public class AudioManager : MonoBehaviour
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
 
-    float volumeSet = 1;
-
     private void Start()
     {
         musicSource.clip = background;
