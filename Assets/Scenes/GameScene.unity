@@ -2376,6 +2376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerInstance (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5495597845498163651, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7659167803681642272, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2502,7 +2506,7 @@ PrefabInstance:
       objectReference: {fileID: 590343711}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: otherUIElements.Array.size
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: towerButtons.Array.data[0]
@@ -2583,11 +2587,11 @@ PrefabInstance:
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: otherUIElements.Array.data[8]
       value: 
-      objectReference: {fileID: 2037596024}
+      objectReference: {fileID: 1789693246}
     - target: {fileID: 8894389633750532472, guid: bc12568e1aa9fed46abe077a757f6a03, type: 3}
       propertyPath: otherUIElements.Array.data[9]
       value: 
-      objectReference: {fileID: 1789693246}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26848,6 +26852,10 @@ PrefabInstance:
       propertyPath: cooldownImage
       value: 
       objectReference: {fileID: 932892080}
+    - target: {fileID: 7561356825319528431, guid: c1bf975978e84c54e8dc88028a674195, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 4269859960925665957, guid: e114f9d17a3370e4d8df60e684711796, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
