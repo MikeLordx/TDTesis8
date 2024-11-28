@@ -19,6 +19,13 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (!tutorialManager.isTutorialComplete)
+        {
+            countdownText.text = "Completa el tutorial";
+            return;
+        }
+
         // Si ya no hay más olas, detener el spawner.
         if (waveIndex >= waves.Length)
         {
@@ -38,6 +45,7 @@ public class WaveSpawner : MonoBehaviour
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
         countdownText.text = string.Format("{0:00.00}", countdown);
     }
+
 
     IEnumerator SpawnWave()
     {
