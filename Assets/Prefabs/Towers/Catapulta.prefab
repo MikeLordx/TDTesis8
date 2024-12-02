@@ -91,6 +91,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6971743991206386639, guid: 18dc2e0056a49504795d4c09c74919d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 357d30a1e47b75348a8f1df6e237933a, type: 2}
     - target: {fileID: -2989794134531443716, guid: 18dc2e0056a49504795d4c09c74919d5, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -107,6 +111,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -253697785040114831, guid: 18dc2e0056a49504795d4c09c74919d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50539484a05d4d440953a24781b2b070, type: 2}
     - target: {fileID: 919132149155446097, guid: 18dc2e0056a49504795d4c09c74919d5, type: 3}
       propertyPath: m_Name
       value: Catapulta

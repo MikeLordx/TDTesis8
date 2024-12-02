@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8222879042926684948, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cdc74490e4f59a46a3fc2497b0b7c01, type: 2}
     - target: {fileID: -7551170558424388754, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -56,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -5890984193407484655, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1591bbec58354494fa559d91f6323054, type: 2}
     - target: {fileID: -4392339412905554475, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -64,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 532108472623650035, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46a40bfcd1b3dc048b25e5fa533971b9, type: 2}
     - target: {fileID: 681983011068109188, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -92,10 +104,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3383911038067770364, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 357d30a1e47b75348a8f1df6e237933a, type: 2}
+    - target: {fileID: 4420678183246262650, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7cdc74490e4f59a46a3fc2497b0b7c01, type: 2}
     - target: {fileID: 6716234918213532645, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7119144591747249577, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 357d30a1e47b75348a8f1df6e237933a, type: 2}
     - target: {fileID: 7534708177125063164, guid: 72df991de2fd9e24aac30712297b5a43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -419,6 +443,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f6ccd1aad3ba3724789d7ad2170ddd75, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f40336bab85430249b0cebc8224df800, type: 2}
     - target: {fileID: 919132149155446097, guid: f6ccd1aad3ba3724789d7ad2170ddd75, type: 3}
       propertyPath: m_Name
       value: Cristal Torre Sola

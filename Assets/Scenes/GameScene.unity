@@ -36838,7 +36838,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: f2a5219317700ea4f8961605906936ca, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: edcce1ce3cccbcb4884b8c501533c51b, type: 2}
+      objectReference: {fileID: 2100000, guid: 1b27a20a436b4c64b882a6f739bf91de, type: 2}
     - target: {fileID: 919132149155446097, guid: f2a5219317700ea4f8961605906936ca, type: 3}
       propertyPath: m_Name
       value: WaterPlane_02
@@ -38604,7 +38604,7 @@ PrefabInstance:
     - target: {fileID: -6773555587134760573, guid: b94e8070e4ed70b45b0afd1084496a8d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 46a40bfcd1b3dc048b25e5fa533971b9, type: 2}
+      objectReference: {fileID: 2100000, guid: 461c1dc0a7024174199dcb50255aefe1, type: 2}
     - target: {fileID: 919132149155446097, guid: b94e8070e4ed70b45b0afd1084496a8d, type: 3}
       propertyPath: m_Name
       value: SwordBasic_B
