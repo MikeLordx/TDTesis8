@@ -519,7 +519,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -61.175415, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3773,7 +3773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc79109fe7274b74bbca0ea0b0febffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   currentHealth: 0
   healthText: {fileID: 10087842}
   character: {fileID: 0}
@@ -12327,49 +12327,46 @@ MonoBehaviour:
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000300000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f0000000400000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0a0000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 190000000300000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 1e00000014000000
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 24681803}
-  timeBetweenWaves: 20
+  timeBetweenWaves: 60
   countdownText: {fileID: 733435572}
 --- !u!4 &621993846
 Transform:
@@ -14694,8 +14691,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -14723,7 +14720,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -63.056946, y: 0, z: -62.598145, w: -63.01825}
+  m_margin: {x: -331.3224, y: 0, z: -62.598145, w: -63.01825}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -16406,49 +16403,46 @@ MonoBehaviour:
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000300000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f0000000400000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0a0000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 190000000300000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 1e00000014000000
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 791752}
-  timeBetweenWaves: 20
+  timeBetweenWaves: 60
   countdownText: {fileID: 733435572}
 --- !u!4 &822533274
 Transform:
@@ -21553,49 +21547,46 @@ MonoBehaviour:
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
-    - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000300000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0f0000000400000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 140000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 0a0000000500000002000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
     - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 190000000300000001000000
     spawnRate: 1.5
   - enemies:
     - {fileID: 7954078855402617965, guid: 87bf5f4632ac1584c8c7ba3d2176878a, type: 3}
     - {fileID: 7954078855402617965, guid: 44496d3f320553a4a9314210c2ec47bd, type: 3}
-    - {fileID: 7954078855402617965, guid: a78acc8688fa434459773732640b887b, type: 3}
-    enemiesCount: 0a0000000400000001000000
+    enemiesCount: 1e00000014000000
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 1150161158}
-  timeBetweenWaves: 20
+  timeBetweenWaves: 60
   countdownText: {fileID: 733435572}
 --- !u!4 &1160270535
 Transform:
