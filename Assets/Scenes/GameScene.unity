@@ -42831,7 +42831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 2402200489236187655}
-  offset: {x: 0, y: 0.5, z: 0.3}
+  offset: {x: 0, y: 0.5, z: 0}
   mouseSensitivity: 100
 --- !u!114 &5195555671645184934
 MonoBehaviour:
