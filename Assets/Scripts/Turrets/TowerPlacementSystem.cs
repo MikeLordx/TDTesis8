@@ -44,7 +44,7 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             towerButtons[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(-5f, 221f);
             towerButtons[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-140f, -48f);
-            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(140f, -48f);
+            towerButtons[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(140f, -45f);
         }
     }
 
@@ -355,7 +355,7 @@ public class TowerPlacementSystem : MonoBehaviour
                     currentPreview = null;
                     selectedTowerIndex = -1;
                     isPlacingTower = false;
-                    IsMenuActiveOrPlacingTower = false; // Ya no estamos colocando torre
+                    IsMenuActiveOrPlacingTower = false;
                 }
             }
             else
