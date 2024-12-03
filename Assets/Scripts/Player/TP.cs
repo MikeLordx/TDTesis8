@@ -11,7 +11,7 @@ public class TP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && canTeleport && connectedTeleport != null)
+        if (other.CompareTag("PlayerCharacter") && canTeleport && connectedTeleport != null)
         {
             other.transform.position = connectedTeleport.position;
             StartCoroutine(TeleportCooldown());

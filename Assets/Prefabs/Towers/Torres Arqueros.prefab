@@ -140,7 +140,7 @@ MonoBehaviour:
   bulletPool: {fileID: 3124863515206372292, guid: 937b6db8fadfeb249aaecd08b2423678, type: 3}
   firePoint: {fileID: 9132215326715419606}
   fireRate: 1.5
-  range: 20
+  range: 35
   nextFireTime: 0
   target: {fileID: 0}
   damage: 35
