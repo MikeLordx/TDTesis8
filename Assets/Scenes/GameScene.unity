@@ -12366,7 +12366,7 @@ MonoBehaviour:
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 24681803}
-  timeBetweenWaves: 60
+  timeBetweenWaves: 10
   countdownText: {fileID: 733435572}
 --- !u!4 &621993846
 Transform:
@@ -16442,7 +16442,7 @@ MonoBehaviour:
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 791752}
-  timeBetweenWaves: 60
+  timeBetweenWaves: 10
   countdownText: {fileID: 733435572}
 --- !u!4 &822533274
 Transform:
@@ -21587,7 +21587,7 @@ MonoBehaviour:
     spawnRate: 1.5
   spawnPointsWithWaypoints:
   - {fileID: 1150161158}
-  timeBetweenWaves: 60
+  timeBetweenWaves: 10
   countdownText: {fileID: 733435572}
 --- !u!4 &1160270535
 Transform:
@@ -42308,7 +42308,7 @@ GameObject:
   - component: {fileID: 5195555671645184934}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Player
+  m_TagString: PlayerCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - Tower
   - groundLayer
   - DeadUI
+  - PlayerCharacter
   layers:
   - Default
   - TransparentFX

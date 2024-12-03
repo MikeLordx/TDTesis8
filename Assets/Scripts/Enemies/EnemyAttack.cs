@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         attackCooldown = 0f;
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("PlayerCharacter").transform;
         animator = GetComponent<Animator>();
     }
 
