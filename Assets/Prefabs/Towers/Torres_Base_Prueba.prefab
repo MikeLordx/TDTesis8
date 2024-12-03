@@ -247,6 +247,8 @@ MonoBehaviour:
   nextFireTime: 0
   target: {fileID: 0}
   damage: 90
+  fireSound: {fileID: 8300000, guid: 60f10abb5c8b4304b8b2af3525cdb910, type: 3}
+  selectedBulletPrefab: {fileID: 6107377033894300968, guid: b7fab2acf72a27c4fae80c2cb4f781d4, type: 3}
 --- !u!114 &6776598907061601961
 MonoBehaviour:
   m_ObjectHideFlags: 0

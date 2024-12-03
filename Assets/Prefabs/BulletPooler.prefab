@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5917786396910067296, guid: 2da83cce59ba8d346ad6edf56018c49d, type: 3}
+  MortarProjectile: {fileID: 4269859960925665957, guid: 42308767c035b6648bc47dd14c6c1ce5, type: 3}
+  MageSpell: {fileID: 6107377033894300968, guid: b7fab2acf72a27c4fae80c2cb4f781d4, type: 3}
   poolSize: 1

@@ -31,6 +31,7 @@ public class TowerPlacementSystem : MonoBehaviour
     public Transform centerPoint;
     public float radius = 250f;
     public static bool IsMenuActiveOrPlacingTower = false;
+    [SerializeField] private AudioClip[] constructionSounds;
 
     #endregion
 
@@ -356,6 +357,13 @@ public class TowerPlacementSystem : MonoBehaviour
                     selectedTowerIndex = -1;
                     isPlacingTower = false;
                     IsMenuActiveOrPlacingTower = false;
+                    GameManager.instance.ChangeState(GameState.Playing);
+                    Cursor.visible = false;
+                    MeleeAttack meleeAttack = GetComponent<MeleeAttack>();
+                    if (meleeAttack != null)
+                    {
+                        meleeAttack.SetExternalCooldown(0.5f);
+                    }
                 }
             }
             else
@@ -365,14 +373,16 @@ public class TowerPlacementSystem : MonoBehaviour
         }
     }
 
+
+
     IEnumerator BuildTowerWithDelay(int towerIndex, Vector3 position, Quaternion rotation)
     {
         float constructionTime = constructionTimes[towerIndex];
-
-        //nota para felipe, aqui pones la animacion, si sale mal eres estupido
-
+        if (constructionSounds != null && towerIndex < constructionSounds.Length)
+        {
+            AudioManager.instance.PlaySFX(constructionSounds[towerIndex]);
+        }
         yield return new WaitForSeconds(constructionTime);
-
         Instantiate(towerPrefabs[towerIndex], position, rotation);
     }
 

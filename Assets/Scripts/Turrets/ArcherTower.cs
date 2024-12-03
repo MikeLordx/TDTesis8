@@ -43,41 +43,42 @@ public class ArcherTower : MonoBehaviour
             }
         }
     }
+    
+    [SerializeField] private AudioClip fireSound;
+    [SerializeField] private GameObject selectedBulletPrefab; // Prefab de bala seleccionada desde el inspector
 
     void Fire()
     {
-        GameObject arrow = bulletPool.GetBullet();
-        arrow.transform.position = firePoint.position;
-        arrow.transform.rotation = firePoint.rotation;
+        if (selectedBulletPrefab == null)
+        {
+            Debug.LogWarning("No se ha asignado un prefab de bala en el inspector.");
+            return;
+        }
+
+        // Crear una instancia de la bala seleccionada desde el pool
+        GameObject bullet = Instantiate(selectedBulletPrefab, firePoint.position, firePoint.rotation);
+
         float currentDamage = damage;
 
+        // Probabilidad de crítico
         if (Random.value <= 0.1f)
         {
             currentDamage *= 1.5f;
         }
 
-        Arrow arrowScript = arrow.GetComponent<Arrow>();
-        arrowScript.SetBulletPooler(bulletPool);
-        arrowScript.damage = currentDamage;
-        arrowScript.SetTarget(target);
-
-        if (maxLevel)
+        // Configurar los datos de la bala
+        Arrow arrowScript = bullet.GetComponent<Arrow>();
+        if (arrowScript != null)
         {
-            RaycastHit[] hits = Physics.RaycastAll(firePoint.position, (target.position - firePoint.position).normalized, range);
-            int penetratedEnemies = 0;
-            foreach (var hit in hits)
-            {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    TempEnemy enemy = hit.collider.GetComponent<TempEnemy>();
-                    if (enemy != null)
-                    {
-                        enemy.TakeDamage(currentDamage);
-                        penetratedEnemies++;
-                        if (penetratedEnemies >= 2) break;
-                    }
-                }
-            }
+            arrowScript.damage = currentDamage;
+            arrowScript.SetTarget(target);
+        }
+
+        // Reproducir sonido de disparo
+        if (fireSound != null)
+        {
+            AudioManager.instance.PlaySFX(fireSound);
         }
     }
+
 }

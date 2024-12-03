@@ -10,6 +10,7 @@ public class MeleeAttack : MonoBehaviour
     public AudioClip attackSound;
 
     private float lastAttackTime = 0f;
+    private float externalCooldownEndTime = 0f;
     private Animator animator;
 
     private void Start()
@@ -19,7 +20,7 @@ public class MeleeAttack : MonoBehaviour
 
     private void Update()
     {
-        if (TowerPlacementSystem.IsMenuActiveOrPlacingTower) return;
+        if (TowerPlacementSystem.IsMenuActiveOrPlacingTower || Time.time < externalCooldownEndTime) return;
 
         if (Input.GetButtonDown("Fire1") && Time.time >= lastAttackTime + attackCooldown)
         {
@@ -52,6 +53,11 @@ public class MeleeAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsAttacking", false);
+    }
+
+    public void SetExternalCooldown(float duration)
+    {
+        externalCooldownEndTime = Time.time + duration;
     }
 
     private void OnDrawGizmosSelected()
