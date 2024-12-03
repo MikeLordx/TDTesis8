@@ -12,6 +12,7 @@ public class AreaAttack : MonoBehaviour
     private float nextFireTime = 0f;
     public int damage = 50;
     public LayerMask groundLayer;
+    public AudioClip eAbilityAudio;
 
     public float manaCost = 50f;
     private Animator animator; // Referencia al Animator
@@ -101,6 +102,7 @@ public class AreaAttack : MonoBehaviour
         {
             GameObject vfx = Instantiate(areaEffectPrefab, hit.point, Quaternion.identity);
             mana.DecreaseMana(manaCost);
+            AudioManager.instance.PlaySFX(eAbilityAudio);
 
             ApplyAreaDamage(hit.point);
             yield return new WaitForSeconds(4.3f);

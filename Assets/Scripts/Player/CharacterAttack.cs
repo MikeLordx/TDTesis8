@@ -8,6 +8,7 @@ public class CharacterAttack : MonoBehaviour
     public GameObject projectilePrefab; // El prefab del proyectil
     public Transform firePoint;         // El punto desde donde se lanzará el proyectil
     public float cooldownTime = 1f;     // Tiempo de enfriamiento entre disparos
+    public AudioClip qAbilityAudio;
 
     public PlayerMana mana;             // Referencia al script de maná del jugador
 
@@ -104,6 +105,8 @@ public class CharacterAttack : MonoBehaviour
 
         // Instanciar el proyectil en el punto de lanzamiento
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        AudioManager.instance.PlaySFX(qAbilityAudio);
     }
 
     IEnumerator CooldownRoutine()

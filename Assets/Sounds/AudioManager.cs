@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [Header ("Audio Source")]
     public AudioSource musicSource;
     public AudioSource SFXSource;
@@ -17,6 +19,14 @@ public class AudioManager : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider musicVolumeSlider;
     public Slider sfxVolumeSlider;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
