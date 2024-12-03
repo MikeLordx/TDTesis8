@@ -63,6 +63,6 @@ public class Player : MonoBehaviour
     // Function to update the displayed health value
     void UpdateHealthText()
     {
-        healthText.text = "Health: " + currentHealth.ToString();  // Update the TMP text with the current health
+        healthText.text = "Castle Health: " + currentHealth.ToString();  // Update the TMP text with the current health
     }
 }
