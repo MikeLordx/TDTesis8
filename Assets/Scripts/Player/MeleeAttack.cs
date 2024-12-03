@@ -7,6 +7,7 @@ public class MeleeAttack : MonoBehaviour
     public float attackRange = 1.5f;
     public int damageAmount = 20;
     public float attackCooldown = 1.0f;
+    public AudioClip attackSound;
 
     private float lastAttackTime = 0f;
     private Animator animator;
@@ -32,6 +33,7 @@ public class MeleeAttack : MonoBehaviour
     void PerformMeleeAttack()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
+        AudioManager.instance.PlaySFX(attackSound);
 
         foreach (Collider hitCollider in hitColliders)
         {

@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 break;
         }
+
+        Debug.Log($"Estado cambiado a: {currentState}");
     }
 }
 

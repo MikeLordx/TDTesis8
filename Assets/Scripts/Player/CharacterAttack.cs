@@ -6,6 +6,7 @@ using TMPro;
 public class CharacterAttack : MonoBehaviour
 {
     public GameObject projectilePrefab; // El prefab del proyectil
+    public GameObject character;
     public Transform firePoint;         // El punto desde donde se lanzará el proyectil
     public float cooldownTime = 1f;     // Tiempo de enfriamiento entre disparos
     public AudioClip qAbilityAudio;
@@ -81,13 +82,23 @@ public class CharacterAttack : MonoBehaviour
             {
                 pause.SetActive(false);
                 GameManager.instance.ChangeState(GameState.Playing);
+                character.GetComponent<AreaAttack>().enabled = true;
+                character.GetComponent<MeleeAttack>().enabled = true;
             }
             else
             {
                 pause.SetActive(true);
                 GameManager.instance.ChangeState(GameState.Paused);
+                character.GetComponent<AreaAttack>().enabled = false;
+                character.GetComponent<MeleeAttack>().enabled = false;
             }
         }
+    }
+
+    public void ActivateAttacks()
+    {
+        character.GetComponent<AreaAttack>().enabled = true;
+        character.GetComponent<MeleeAttack>().enabled = true;
     }
     IEnumerator ResetCasting()
     {
@@ -97,6 +108,12 @@ public class CharacterAttack : MonoBehaviour
 
     void LaunchProjectile()
     {
+        if (GameManager.instance.currentState == GameState.Paused)
+        {
+            // Evitar que se ejecute cuando el juego está pausado
+            return;
+        }
+
         if (mana.currentMana < manaCost)
             return;
 
