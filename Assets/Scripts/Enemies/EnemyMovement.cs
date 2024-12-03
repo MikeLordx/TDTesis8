@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     private int currentWaypointIndex = 0;
-    private Transform player;
+    public Transform player;
     private PlayerHealth playerHealth;
     private bool chasingPlayer = false;
     private Vector3 targetPosition;
@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
         // Inicializa el destino alrededor del waypoint actual
         SetNewTargetPosition();
 
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("PlayerCharacter");
         if (playerObject != null)
         {
             player = playerObject.transform;

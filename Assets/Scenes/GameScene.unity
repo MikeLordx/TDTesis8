@@ -21032,7 +21032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1129444232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41992,6 +41992,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  eAbilityAudio: {fileID: 8300000, guid: 8d58d5d554458e34fabbbf6ec64bb71c, type: 3}
   manaCost: 50
   cooldownImage: {fileID: 465500228}
   cooldownText: {fileID: 76660565}
@@ -42378,6 +42379,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2999945099718532975, guid: e8871f03107a57545b3f8cfed7ba844c, type: 3}
   firePoint: {fileID: 4071019681275465918}
   cooldownTime: 1
+  qAbilityAudio: {fileID: 8300000, guid: 6a565becceff4684d8de6d5d6ac46956, type: 3}
   mana: {fileID: 5578049282762115789}
   manaCost: 15
   cooldownImage: {fileID: 932892080}

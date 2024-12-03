@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] public float timeBetweenAttacks = 2f;
     [SerializeField] public float attackRange = 1.5f;
     [SerializeField] public float attackDelay = 0.5f;
+    public AudioClip enemyAttack;
 
     private float attackCooldown;
     private Transform target;
@@ -38,6 +39,7 @@ public class EnemyAttack : MonoBehaviour
     {
         animator.SetBool("isWalking", false);
         animator.SetTrigger("Attack");
+        AudioManager.instance.PlaySFX(enemyAttack);
 
         yield return new WaitForSeconds(attackDelay);
 
