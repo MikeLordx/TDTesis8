@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public bool isDead = false;
     [SerializeField] private Camera respawnCamera;
     [SerializeField] private Camera playerCamera;
+    public AudioClip hit;
+    public AudioClip playerDie;
 
     private void Start()
     {
@@ -36,10 +38,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
+        AudioManager.instance.PlaySFX(hit);
 
         if (currentHealth <= 0)
         {
             Die();
+            AudioManager.instance.PlaySFX(playerDie);
         }
     }
 

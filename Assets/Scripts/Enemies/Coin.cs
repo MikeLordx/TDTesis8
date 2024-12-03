@@ -14,6 +14,8 @@ public class Coin : MonoBehaviour
     [SerializeField] private float lifeTime = 10f;
     [SerializeField][Range(0f, 1f)] private float spawnProbability = 0.5f;
 
+    public AudioClip coinSound;
+
     private Rigidbody rb;
     private bool isFloating = false;
 
@@ -63,10 +65,11 @@ public class Coin : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerCharacter"))
         {
             GameManager.instance.AddCoins(coinValue);
             Destroy(gameObject);
+            AudioManager.instance.PlaySFX(coinSound);
         }
     }
 }

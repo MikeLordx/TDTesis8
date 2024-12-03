@@ -127,6 +127,7 @@ MonoBehaviour:
   stopTime: 2
   lifeTime: 20
   spawnProbability: 0.5
+  coinSound: {fileID: 8300000, guid: 883b7ae4c7e0081499396ca1895f50c5, type: 3}
 --- !u!1 &5670668049653815402
 GameObject:
   m_ObjectHideFlags: 0

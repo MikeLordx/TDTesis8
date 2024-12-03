@@ -203,6 +203,7 @@ MonoBehaviour:
   playerDetectionRange: 5
   startSpacing: 2
   waypointAreaRadius: 3
+  player: {fileID: 0}
 --- !u!114 &3804892235877523680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +249,7 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   attackRange: 1.5
   attackDelay: 0.5
+  enemyAttack: {fileID: 8300000, guid: 868d51752af1f83438a901ece25ddb1b, type: 3}
 --- !u!114 &1901014762933523547
 MonoBehaviour:
   m_ObjectHideFlags: 0
