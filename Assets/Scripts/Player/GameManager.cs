@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Playing);
     }
 
+    public void GameStateIsPlaying()
+    {
+        ChangeState(GameState.Playing);
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
