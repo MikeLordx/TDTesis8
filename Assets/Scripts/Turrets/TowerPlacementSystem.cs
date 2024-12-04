@@ -95,7 +95,7 @@ public class TowerPlacementSystem : MonoBehaviour
                 }
             }
 
-            GameManager.instance.ChangeState(GameState.Paused);
+            GameManager.instance.ChangeState(GameState.PlacingTower);
         }
         else
         {

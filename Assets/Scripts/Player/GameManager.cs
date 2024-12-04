@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI coinText2;
 
     [SerializeField] public GameState currentState;
+    [SerializeField] private GameObject character;
 
     private void Awake()
     {
@@ -86,10 +88,20 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                character.GetComponent<AreaAttack>().enabled = true;
+                character.GetComponent<MeleeAttack>().enabled = true;
+                character.GetComponent<CharacterAttack>().enabled = true;
                 break;
             case GameState.Paused:
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                break;
+            case GameState.PlacingTower:
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                character.GetComponent<AreaAttack>().enabled = false;
+                character.GetComponent<MeleeAttack>().enabled = false;
+                character.GetComponent<CharacterAttack>().enabled = false;
                 break;
             case GameState.GameOver:
                 Cursor.visible = true;
@@ -106,5 +118,6 @@ public enum GameState
     MainMenu,
     Playing,
     Paused,
+    PlacingTower,
     GameOver
 }

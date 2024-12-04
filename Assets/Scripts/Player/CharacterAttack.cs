@@ -97,8 +97,7 @@ public class CharacterAttack : MonoBehaviour
 
     public void ActivateAttacks()
     {
-        character.GetComponent<AreaAttack>().enabled = true;
-        character.GetComponent<MeleeAttack>().enabled = true;
+        character.GetComponent<CharacterAttack>().enabled = true;
     }
     IEnumerator ResetCasting()
     {
