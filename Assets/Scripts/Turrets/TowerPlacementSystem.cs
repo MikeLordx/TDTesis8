@@ -265,16 +265,45 @@ public class TowerPlacementSystem : MonoBehaviour
         {
             Destroy(currentPreview);
         }
+
         StartCoroutine(CreatePreviewCoroutine());
     }
 
     IEnumerator CreatePreviewCoroutine()
     {
         yield return null;
-
         currentPreview = Instantiate(previewPrefabs[selectedTowerIndex]);
         currentPreview.SetActive(true);
+
+        float towerRange = towerPrefabs[selectedTowerIndex].GetComponent<ArcherTower>().range;
+        Vector3 previewPosition = currentPreview.transform.position;
+        GameObject rangeIndicator = CreateRangeIndicator(previewPosition, towerRange);
+        rangeIndicator.transform.SetParent(currentPreview.transform);
+        rangeIndicator.transform.localPosition = Vector3.zero;
     }
+
+
+    GameObject CreateRangeIndicator(Vector3 position, float range)
+    {
+        GameObject rangeIndicator = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        rangeIndicator.transform.localScale = new Vector3(range * 2, 0.01f, range * 2);
+        rangeIndicator.transform.position = new Vector3(position.x, position.y + 150f, position.z);
+
+        Material rangeMaterial = Resources.Load<Material>("TowerRangeMaterial");
+        Renderer renderer = rangeIndicator.GetComponent<Renderer>();
+        renderer.material = rangeMaterial;
+        renderer.material.color = new Color(0, 0.5f, 1f, 0.3f);
+        Collider collider = rangeIndicator.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        return rangeIndicator;
+    }
+
+
+
 
 
     void PreviewTowerPlacement()

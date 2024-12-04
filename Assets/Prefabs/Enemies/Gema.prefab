@@ -119,14 +119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a164e9c492f2c9845965fe62b71830f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 50
+  coinValue: 25
   launchForce: 15
   floatHeight: 0.1
   floatSpeed: 2
   rotationSpeed: 100
   stopTime: 2
-  lifeTime: 20
-  spawnProbability: 0.5
+  lifeTime: 10
+  spawnProbability: 0.1
   coinSound: {fileID: 8300000, guid: 883b7ae4c7e0081499396ca1895f50c5, type: 3}
 --- !u!1 &5670668049653815402
 GameObject:

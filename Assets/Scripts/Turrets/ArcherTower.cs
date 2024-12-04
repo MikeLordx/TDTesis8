@@ -45,36 +45,28 @@ public class ArcherTower : MonoBehaviour
     }
     
     [SerializeField] private AudioClip fireSound;
-    [SerializeField] private GameObject selectedBulletPrefab; // Prefab de bala seleccionada desde el inspector
+    [SerializeField] private GameObject selectedBulletPrefab;
 
     void Fire()
     {
         if (selectedBulletPrefab == null)
         {
-            Debug.LogWarning("No se ha asignado un prefab de bala en el inspector.");
+            Debug.LogWarning("No hay bala");
             return;
         }
-
-        // Crear una instancia de la bala seleccionada desde el pool
         GameObject bullet = Instantiate(selectedBulletPrefab, firePoint.position, firePoint.rotation);
 
         float currentDamage = damage;
-
-        // Probabilidad de crítico
         if (Random.value <= 0.1f)
         {
             currentDamage *= 1.5f;
         }
-
-        // Configurar los datos de la bala
         Arrow arrowScript = bullet.GetComponent<Arrow>();
         if (arrowScript != null)
         {
             arrowScript.damage = currentDamage;
             arrowScript.SetTarget(target);
         }
-
-        // Reproducir sonido de disparo
         if (fireSound != null)
         {
             AudioManager.instance.PlaySFX(fireSound);
