@@ -22,6 +22,7 @@ public class CharacterAttack : MonoBehaviour
     public TextMeshProUGUI cooldownText; // Texto TMP para mostrar el tiempo restante del cooldown
     public Image lowManaImage;           // Imagen que se muestra si el maná es insuficiente
     public GameObject pause;
+    public GameObject sword;
 
     private float nextFireTime = 0f;
     public bool pauseIsActive;
@@ -83,14 +84,14 @@ public class CharacterAttack : MonoBehaviour
                 pause.SetActive(false);
                 GameManager.instance.ChangeState(GameState.Playing);
                 character.GetComponent<AreaAttack>().enabled = true;
-                character.GetComponent<MeleeAttack>().enabled = true;
+                sword.GetComponent<MeleeAttack>().enabled = true;
             }
             else
             {
                 pause.SetActive(true);
                 GameManager.instance.ChangeState(GameState.Paused);
                 character.GetComponent<AreaAttack>().enabled = false;
-                character.GetComponent<MeleeAttack>().enabled = false;
+                sword.GetComponent<MeleeAttack>().enabled = false;
             }
         }
     }

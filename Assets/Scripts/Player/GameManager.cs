@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameState currentState;
     [SerializeField] private GameObject character;
+    [SerializeField] private GameObject sword;
 
     private void Awake()
     {
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 character.GetComponent<AreaAttack>().enabled = true;
-                character.GetComponent<MeleeAttack>().enabled = true;
+                sword.GetComponent<MeleeAttack>().enabled = true;
                 character.GetComponent<CharacterAttack>().enabled = true;
                 break;
             case GameState.Paused:
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 character.GetComponent<AreaAttack>().enabled = false;
-                character.GetComponent<MeleeAttack>().enabled = false;
+                sword.GetComponent<MeleeAttack>().enabled = false;
                 character.GetComponent<CharacterAttack>().enabled = false;
                 break;
             case GameState.GameOver:
