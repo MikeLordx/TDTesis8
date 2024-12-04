@@ -12,6 +12,11 @@ public class PlayerCamera : MonoBehaviour
     private Animator animator;
     private bool isAttacking = false;
 
+    private float shakeDuration = 0f;
+    private float shakeMagnitude = 0f;
+    private Vector3 originalPosition;
+
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,4 +46,31 @@ public class PlayerCamera : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(xRotation, playerBody.eulerAngles.y, 0f);
     }
+
+    public void TriggerShake(float duration, float magnitude)
+    {
+        shakeDuration = duration;
+        shakeMagnitude = magnitude;
+        originalPosition = transform.localPosition;
+    }
+
+
+    private void LateUpdate()
+    {
+        if (shakeDuration > 0)
+        {
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            transform.localPosition = originalPosition + new Vector3(offsetX, offsetY, 0);
+            shakeDuration -= Time.deltaTime;
+
+            if (shakeDuration <= 0)
+            {
+                transform.localPosition = originalPosition;
+            }
+        }
+    }
+
+
 }

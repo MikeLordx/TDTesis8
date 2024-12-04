@@ -17,6 +17,9 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip hit;
     public AudioClip playerDie;
 
+    private PlayerCamera playerCameraScript;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -29,10 +32,18 @@ public class PlayerHealth : MonoBehaviour
         {
             respawnCamera.gameObject.SetActive(false);
         }
+        playerCameraScript = playerCamera.GetComponent<PlayerCamera>();
+
     }
 
     public void TakeDamage(float damage)
     {
+        if (playerCameraScript != null)
+        {
+            playerCameraScript.TriggerShake(0.1f, 0.3f);
+        }
+
+
         if (isDead) return;
 
         currentHealth -= damage;
