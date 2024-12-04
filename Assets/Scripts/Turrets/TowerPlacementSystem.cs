@@ -276,6 +276,7 @@ public class TowerPlacementSystem : MonoBehaviour
         currentPreview.SetActive(true);
     }
 
+
     void PreviewTowerPlacement()
     {
         if (currentPreview == null) return;
@@ -343,48 +344,57 @@ public class TowerPlacementSystem : MonoBehaviour
                 if (Physics.Raycast(towerPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity, groundLayer))
                 {
                     towerPosition.y = hit.point.y;
-                    float towerHeightOffset = 0f;
-                    towerPosition.y += towerHeightOffset;
-
-                    Quaternion towerRotation = currentPreview.transform.rotation;
-
-                    StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, towerRotation));
-
+                    AddTemporaryConstructionCollider(towerPosition, previewRenderer.bounds.size);
+                    StartCoroutine(BuildTowerWithDelay(selectedTowerIndex, towerPosition, currentPreview.transform.rotation));
                     GameManager.instance.SpendCoins(towerCosts[selectedTowerIndex]);
-
                     Destroy(currentPreview);
                     currentPreview = null;
                     selectedTowerIndex = -1;
                     isPlacingTower = false;
                     IsMenuActiveOrPlacingTower = false;
                     GameManager.instance.ChangeState(GameState.Playing);
-                    Cursor.visible = false;
-                    MeleeAttack meleeAttack = GetComponent<MeleeAttack>();
-                    if (meleeAttack != null)
-                    {
-                        meleeAttack.SetExternalCooldown(0.5f);
-                    }
                 }
             }
             else
             {
-                Debug.Log("Esta rojo no se puede hombre");
+                Debug.Log("No puedes construir aquí.");
             }
         }
     }
 
+
+
+
+    GameObject tempColliderObject;
+
+    void AddTemporaryConstructionCollider(Vector3 position, Vector3 size)
+    {
+        tempColliderObject = new GameObject("TemporaryConstructionCollider");
+        tempColliderObject.transform.position = position;
+        BoxCollider tempCollider = tempColliderObject.AddComponent<BoxCollider>();
+        tempCollider.size = size;
+        tempCollider.isTrigger = false;
+        tempColliderObject.layer = LayerMask.NameToLayer("TemporaryCollider");
+    }
 
 
     IEnumerator BuildTowerWithDelay(int towerIndex, Vector3 position, Quaternion rotation)
     {
         float constructionTime = constructionTimes[towerIndex];
+
         if (constructionSounds != null && towerIndex < constructionSounds.Length)
         {
             AudioManager.instance.PlaySFX(constructionSounds[towerIndex]);
         }
         yield return new WaitForSeconds(constructionTime);
+        if (tempColliderObject != null)
+        {
+            Destroy(tempColliderObject);
+            tempColliderObject = null;
+        }
         Instantiate(towerPrefabs[towerIndex], position, rotation);
     }
+
 
 
     #endregion
