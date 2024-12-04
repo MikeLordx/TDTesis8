@@ -8,6 +8,17 @@ public class TP : MonoBehaviour
     public float cooldownTime = 20f;
 
     private bool canTeleport = true;
+    private Renderer objectRenderer;
+    private Color originalColor;
+
+    private void Start()
+    {
+        objectRenderer = GetComponent<Renderer>();
+        if (objectRenderer != null)
+        {
+            originalColor = objectRenderer.material.color;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,8 +37,16 @@ public class TP : MonoBehaviour
     private IEnumerator TeleportCooldown()
     {
         canTeleport = false;
+        if (objectRenderer != null)
+        {
+            objectRenderer.material.color = Color.red;
+        }
         yield return new WaitForSeconds(cooldownTime);
         canTeleport = true;
+        if (objectRenderer != null)
+        {
+            objectRenderer.material.color = originalColor;
+        }
     }
 
     private void OnDrawGizmos()
