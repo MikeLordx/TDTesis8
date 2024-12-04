@@ -4,15 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerDodge : MonoBehaviour
 {
-    [SerializeField] private float dodgeDistance = 5f;
-    [SerializeField] private float dodgeDuration = 0.2f;
-    [SerializeField] private float dodgeCooldown = 2f;
+    [SerializeField] private float dashDistance = 5f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private Transform cameraTransform;
 
     private Rigidbody rb;
-    private bool isDodging = false;
-    private float lastDodgeTime = -2f;
-    private Vector3 originalVelocity;
+    private bool isDashing = false;
+    private float lastDashTime = -2f;
 
     private void Start()
     {
@@ -21,32 +20,27 @@ public class PlayerDodge : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDodging && Time.time >= lastDodgeTime + dodgeCooldown)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= lastDashTime + dashCooldown)
         {
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-            if (move != Vector3.zero)
-            {
-                Vector3 dodgeDirection = cameraTransform.TransformDirection(move).normalized;
-                StartCoroutine(PerformDodge(dodgeDirection));
-                lastDodgeTime = Time.time;
-            }
+            Vector3 dashDirection = cameraTransform.forward;
+            dashDirection.y = 0;
+
+            StartCoroutine(PerformDash(dashDirection));
+            lastDashTime = Time.time;
         }
     }
 
-    IEnumerator PerformDodge(Vector3 dodgeDirection)
+    IEnumerator PerformDash(Vector3 dashDirection)
     {
-        isDodging = true;
-        originalVelocity = rb.velocity;
-        rb.isKinematic = false;
-
+        isDashing = true;
+        Vector3 startPosition = transform.position;
         float startTime = Time.time;
-        while (Time.time < startTime + dodgeDuration)
+
+        while (Time.time < startTime + dashDuration)
         {
-            rb.velocity = new Vector3(dodgeDirection.x * (dodgeDistance / dodgeDuration), rb.velocity.y, dodgeDirection.z * (dodgeDistance / dodgeDuration));
+            rb.MovePosition(startPosition + dashDirection * dashDistance * (Time.time - startTime) / dashDuration);
             yield return null;
         }
-
-        rb.velocity = originalVelocity;
-        isDodging = false;
+        isDashing = false;
     }
 }

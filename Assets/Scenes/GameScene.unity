@@ -42779,9 +42779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c0eec2e7a331c4c904fb108320c4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeDistance: 20
-  dodgeDuration: 0.1
-  dodgeCooldown: 1
+  dashDistance: 10
+  dashDuration: 0.2
+  dashCooldown: 2
   cameraTransform: {fileID: 6298679400132661602}
 --- !u!136 &4438699680626860185
 CapsuleCollider:
@@ -42884,7 +42884,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7201981601772208600}
   serializedVersion: 4
-  m_Mass: 1.5
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
