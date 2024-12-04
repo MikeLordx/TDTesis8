@@ -8,7 +8,7 @@ public class MeleeAttack : MonoBehaviour
     public int damageAmount = 20;
     public float attackCooldown = 1.0f;
     public AudioClip attackSound;
-
+    private Quaternion originalRotation;
     private float lastAttackTime = 0f;
     private float externalCooldownEndTime = 0f;
     private Animator animator;
@@ -16,6 +16,7 @@ public class MeleeAttack : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        originalRotation = transform.localRotation;
     }
 
     private void Update()
@@ -53,6 +54,7 @@ public class MeleeAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsAttacking", false);
+        transform.localRotation = originalRotation;
     }
 
     public void SetExternalCooldown(float duration)
