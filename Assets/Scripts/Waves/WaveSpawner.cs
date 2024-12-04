@@ -14,6 +14,7 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
 
     public TMP_Text countdownText;
+    public TMP_Text waveCountUI;
 
     private int waveIndex = 0;
 
@@ -44,6 +45,7 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
         countdownText.text = "Time until next wave: " + string.Format("{0:00.00}", countdown);
+        waveCountUI.text = "Round: " + (waveIndex + 1).ToString();
     }
 
 
