@@ -9,6 +9,7 @@ TagManager:
   - groundLayer
   - DeadUI
   - PlayerCharacter
+  - VictoryCanvas
   layers:
   - Default
   - TransparentFX

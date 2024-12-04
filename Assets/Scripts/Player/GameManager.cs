@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Playing);
     }
 
+    public void GameStateIsMenu()
+    {
+        ChangeState(GameState.MainMenu);
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -85,8 +90,10 @@ public class GameManager : MonoBehaviour
             case GameState.MainMenu:
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 1;
                 break;
             case GameState.Playing:
+                Time.timeScale = 1;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 character.GetComponent<AreaAttack>().enabled = true;
@@ -108,6 +115,10 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 break;
+            case GameState.Victory:
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                break;
         }
 
         Debug.Log($"Estado cambiado a: {currentState}");
@@ -120,5 +131,6 @@ public enum GameState
     Playing,
     Paused,
     PlacingTower,
-    GameOver
+    GameOver,
+    Victory
 }
