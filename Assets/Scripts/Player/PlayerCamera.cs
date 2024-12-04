@@ -14,16 +14,13 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor al inicio
+        Cursor.lockState = CursorLockMode.Locked;
         animator = playerBody.GetComponent<Animator>();
     }
 
     private void Update()
     {
-        // Siempre sigue la posición del jugador
         transform.position = playerBody.position + offset;
-
-        // Solo rota si el estado del juego es "Playing"
         if (GameManager.instance.currentState == GameState.Playing)
         {
             HandleCameraRotation();
@@ -32,25 +29,16 @@ public class PlayerCamera : MonoBehaviour
 
     private void HandleCameraRotation()
     {
-        // Detectar si el jugador está atacando
         isAttacking = animator != null && animator.GetBool("IsAttacking");
-
-        // Movimiento del ratón
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
-        // Rotación vertical de la cámara
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -60f, 60f); // Ajusta el límite vertical si es necesario
+        xRotation = Mathf.Clamp(xRotation, -60f, 60f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        // Rotación horizontal del jugador
         if (!isAttacking)
         {
             playerBody.Rotate(Vector3.up * mouseX);
         }
-
-        // Ajusta la cámara para que también gire horizontalmente con el jugador
         transform.rotation = Quaternion.Euler(xRotation, playerBody.eulerAngles.y, 0f);
     }
 }
